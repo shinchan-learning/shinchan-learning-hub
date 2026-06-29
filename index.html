@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shin-Chan Learning Hub | Class 1-10 বাংলা শিক্ষা</title>
+<meta name="description" content="Class 1-10 এর সব পড়া এক জায়গায়। ভিডিও, নোট, PDF, MCQ - সব ফ্রিতে।">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --primary:#2563eb;
+  --primary-dark:#1d4ed8;
+  --primary-light:#eff6ff;
+  --success:#16a34a;
+  --warning:#d97706;
+  --danger:#dc2626;
+  --purple:#7c3aed;
+  --text:#1e293b;
+  --text-secondary:#64748b;
+  --border:#e2e8f0;
+  --bg:#f8fafc;
+  --white:#ffffff;
+  --card-shadow:0 1px 3px rgba(0,0,0,0.08),0 1px 2px rgba(0,0,0,0.04);
+  --card-shadow-hover:0 4px 12px rgba(0,0,0,0.12);
+}
+body{font-family:'Hind Siliguri',sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6}
+
+/* NAV */
+nav{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;padding:0 20px}
+.nav-inner{max-width:1100px;margin:0 auto;height:60px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:20px;font-weight:700;color:var(--primary);text-decoration:none;display:flex;align-items:center;gap:8px}
+.logo span{color:var(--text)}
+.nav-links{display:flex;gap:6px}
+.nav-links a{padding:7px 14px;border-radius:8px;text-decoration:none;font-size:14px;color:var(--text-secondary);font-weight:500;transition:all 0.2s}
+.nav-links a:hover,.nav-links a.active{background:var(--primary-light);color:var(--primary)}
+.nav-btn{background:var(--primary);color:white;border:none;padding:8px 18px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:all 0.2s}
+.nav-btn:hover{background:var(--primary-dark)}
+.hamburger{display:none;background:none;border:none;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:22px;height:2px;background:var(--text);margin:5px 0;border-radius:2px;transition:all 0.3s}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#1e40af 0%,#3b82f6 50%,#06b6d4 100%);color:white;padding:60px 20px;text-align:center}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.3);padding:5px 14px;border-radius:20px;font-size:13px;margin-bottom:20px}
+.hero h1{font-size:36px;font-weight:700;line-height:1.3;margin-bottom:14px}
+.hero h1 em{font-style:normal;color:#fde68a}
+.hero p{font-size:16px;opacity:0.9;max-width:500px;margin:0 auto 28px}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-white{background:white;color:var(--primary);border:none;padding:12px 24px;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;transition:all 0.2s}
+.btn-white:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,0.2)}
+.btn-outline{background:transparent;color:white;border:2px solid rgba(255,255,255,0.6);padding:12px 24px;border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;font-family:inherit;transition:all 0.2s}
+.btn-outline:hover{background:rgba(255,255,255,0.1)}
+
+/* STATS */
+.stats{background:white;border-bottom:1px solid var(--border)}
+.stats-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr)}
+.stat{padding:20px;text-align:center;border-right:1px solid var(--border)}
+.stat:last-child{border-right:none}
+.stat-n{font-size:28px;font-weight:700;color:var(--primary)}
+.stat-l{font-size:13px;color:var(--text-secondary);margin-top:2px}
+
+/* CONTAINER */
+.container{max-width:1100px;margin:0 auto;padding:40px 20px}
+
+/* SECTION HEADER */
+.sec-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.sec-title{font-size:20px;font-weight:700}
+.sec-title span{color:var(--primary)}
+.sec-link{font-size:14px;color:var(--primary);text-decoration:none;font-weight:500}
+
+/* CLASS GRID */
+.class-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:48px}
+.class-card{background:white;border:1.5px solid var(--border);border-radius:12px;padding:20px 12px;text-align:center;cursor:pointer;transition:all 0.2s;text-decoration:none;color:inherit}
+.class-card:hover,.class-card.active{border-color:var(--primary);background:var(--primary-light);transform:translateY(-2px);box-shadow:var(--card-shadow-hover)}
+.class-num{font-size:32px;font-weight:700;color:var(--primary)}
+.class-lbl{font-size:12px;color:var(--text-secondary);margin-top:2px}
+.class-count{font-size:11px;background:var(--primary-light);color:var(--primary);padding:2px 8px;border-radius:10px;margin-top:6px;display:inline-block}
+
+/* CONTENT FILTERS */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.filter-btn{padding:7px 16px;border-radius:20px;border:1.5px solid var(--border);background:white;font-size:13px;cursor:pointer;font-family:inherit;font-weight:500;color:var(--text-secondary);transition:all 0.2s}
+.filter-btn:hover,.filter-btn.active{background:var(--primary);border-color:var(--primary);color:white}
+
+/* CONTENT GRID */
+.content-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:48px}
+.content-card{background:white;border-radius:14px;overflow:hidden;box-shadow:var(--card-shadow);border:1px solid var(--border);transition:all 0.2s;cursor:pointer}
+.content-card:hover{transform:translateY(-3px);box-shadow:var(--card-shadow-hover)}
+.content-thumb{height:120px;display:flex;align-items:center;justify-content:center;font-size:40px;position:relative}
+.thumb-blue{background:linear-gradient(135deg,#dbeafe,#bfdbfe)}
+.thumb-green{background:linear-gradient(135deg,#dcfce7,#bbf7d0)}
+.thumb-amber{background:linear-gradient(135deg,#fef3c7,#fde68a)}
+.thumb-purple{background:linear-gradient(135deg,#ede9fe,#ddd6fe)}
+.thumb-red{background:linear-gradient(135deg,#fee2e2,#fecaca)}
+.content-badge{position:absolute;top:10px;right:10px;font-size:10px;font-weight:600;padding:3px 8px;border-radius:6px}
+.badge-video{background:#fee2e2;color:#dc2626}
+.badge-note{background:#dcfce7;color:#16a34a}
+.badge-pdf{background:#fef3c7;color:#d97706}
+.badge-mcq{background:#ede9fe;color:#7c3aed}
+.content-body{padding:14px}
+.content-subject{font-size:11px;color:var(--primary);font-weight:600;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.5px}
+.content-title{font-size:14px;font-weight:600;line-height:1.4;margin-bottom:8px}
+.content-meta{display:flex;align-items:center;justify-content:space-between}
+.content-class-tag{font-size:11px;background:var(--bg);color:var(--text-secondary);padding:3px 8px;border-radius:6px;font-weight:500}
+.content-views{font-size:11px;color:var(--text-secondary)}
+
+/* AI BOX */
+.ai-section{background:linear-gradient(135deg,#eff6ff,#f0f9ff);border:1.5px solid #bfdbfe;border-radius:16px;padding:24px;margin-bottom:48px}
+.ai-header{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.ai-dot{width:10px;height:10px;background:var(--primary);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.ai-title{font-size:15px;font-weight:700;color:var(--primary)}
+.ai-text{font-size:14px;color:var(--text-secondary);line-height:1.7;margin-bottom:14px}
+.ai-chips{display:flex;flex-wrap:wrap;gap:8px}
+.ai-chip{font-size:13px;background:white;color:var(--primary);border:1.5px solid #bfdbfe;padding:6px 14px;border-radius:20px;cursor:pointer;font-weight:500;transition:all 0.2s;font-family:inherit}
+.ai-chip:hover{background:var(--primary);color:white;border-color:var(--primary)}
+
+/* VIDEO SECTION */
+.video-section{margin-bottom:48px}
+.video-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.video-card{background:white;border-radius:14px;overflow:hidden;box-shadow:var(--card-shadow);border:1px solid var(--border)}
+.video-thumb{background:linear-gradient(135deg,#1e3a5f,#2563eb);height:160px;display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative}
+.play-btn{width:56px;height:56px;background:rgba(255,255,255,0.9);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;transition:all 0.2s}
+.video-thumb:hover .play-btn{transform:scale(1.1);background:white}
+.video-body{padding:14px}
+.video-title{font-size:14px;font-weight:600;margin-bottom:6px}
+.video-meta{display:flex;gap:12px;font-size:12px;color:var(--text-secondary)}
+
+/* SUBJECT SECTION */
+.subject-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:48px}
+.subject-card{background:white;border-radius:12px;padding:18px;text-align:center;border:1.5px solid var(--border);cursor:pointer;transition:all 0.2s;text-decoration:none;color:inherit}
+.subject-card:hover{border-color:var(--primary);background:var(--primary-light)}
+.subject-icon{font-size:28px;margin-bottom:8px}
+.subject-name{font-size:14px;font-weight:600}
+.subject-count{font-size:11px;color:var(--text-secondary);margin-top:3px}
+
+/* FOOTER */
+footer{background:#1e293b;color:#94a3b8;padding:40px 20px 20px}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px;margin-bottom:32px}
+.footer-brand .logo{color:#60a5fa;font-size:18px;margin-bottom:10px;display:block}
+.footer-brand p{font-size:13px;line-height:1.7;color:#64748b}
+.footer-col h4{font-size:14px;font-weight:600;color:#e2e8f0;margin-bottom:12px}
+.footer-col a{display:block;font-size:13px;color:#64748b;text-decoration:none;margin-bottom:6px;transition:color 0.2s}
+.footer-col a:hover{color:#60a5fa}
+.footer-bottom{border-top:1px solid #334155;padding-top:20px;text-align:center;font-size:13px;color:#475569}
+
+/* MOBILE NAV */
+.mobile-menu{display:none;flex-direction:column;background:white;border-top:1px solid var(--border);padding:12px 20px}
+.mobile-menu.open{display:flex}
+.mobile-menu a{padding:10px 0;font-size:15px;color:var(--text);text-decoration:none;border-bottom:1px solid var(--border)}
+.mobile-menu a:last-child{border:none}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .hamburger{display:block}
+  .nav-links,.nav-btn{display:none}
+  .hero h1{font-size:26px}
+  .stats-inner{grid-template-columns:repeat(2,1fr)}
+  .stat:nth-child(2){border-right:none}
+  .stat:nth-child(3){border-top:1px solid var(--border)}
+  .class-grid{grid-template-columns:repeat(5,1fr);gap:8px}
+  .class-card{padding:14px 8px}
+  .class-num{font-size:22px}
+  .content-grid{grid-template-columns:repeat(2,1fr)}
+  .video-grid{grid-template-columns:1fr}
+  .subject-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-top{grid-template-columns:1fr 1fr}
+}
+@media(max-width:480px){
+  .content-grid{grid-template-columns:1fr}
+  .hero h1{font-size:22px}
+  .class-grid{grid-template-columns:repeat(5,1fr);gap:6px}
+  .class-num{font-size:18px}
+  .class-lbl{font-size:10px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">📚 <span>Shin-Chan</span> Learning Hub</a>
+    <div class="nav-links">
+      <a href="#" class="active">হোম</a>
+      <a href="#">ক্লাস</a>
+      <a href="#">বিষয়</a>
+      <a href="#">ভিডিও</a>
+      <a href="#">নোট</a>
+      <a href="#">MCQ</a>
+    </div>
+    <button class="nav-btn">🔍 খোঁজো</button>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="মেনু">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#">🏠 হোম</a>
+    <a href="#">📖 ক্লাস</a>
+    <a href="#">📚 বিষয়</a>
+    <a href="#">🎥 ভিডিও</a>
+    <a href="#">📝 নোট</a>
+    <a href="#">✅ MCQ</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">✨ AI-powered বাংলা শিক্ষা প্ল্যাটফর্ম</div>
+  <h1>Class 1–10 এর সব পড়া<br><em>এক জায়গায়, ফ্রিতে</em></h1>
+  <p>ভিডিও ক্লাস, নোট, PDF, MCQ — সব এখানে। AI তোমাকে গাইড করবে।</p>
+  <div class="hero-btns">
+    <button class="btn-white" onclick="scrollToClasses()">📖 ক্লাস বেছে নাও</button>
+    <button class="btn-outline">🎥 ভিডিও দেখো</button>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stats-inner">
+    <div class="stat"><div class="stat-n">১০</div><div class="stat-l">ক্লাস</div></div>
+    <div class="stat"><div class="stat-n">১২+</div><div class="stat-l">বিষয়</div></div>
+    <div class="stat"><div class="stat-n">৫০০+</div><div class="stat-l">কন্টেন্ট</div></div>
+    <div class="stat"><div class="stat-n">ফ্রি</div><div class="stat-l">সবসময়</div></div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- AI SUGGESTION -->
+  <div class="ai-section">
+    <div class="ai-header">
+      <div class="ai-dot"></div>
+      <span class="ai-title">🤖 AI Assistant — এখন কী পড়বে?</span>
+    </div>
+    <p class="ai-text">পরীক্ষা কাছে আসছে! গণিত আর বিজ্ঞানের উপর বেশি focus করো। Class 5 এর ভগ্নাংশ অধ্যায়টা অনেক গুরুত্বপূর্ণ — এটা ভালো করলে দশমিকও সহজ হবে।</p>
+    <div class="ai-chips">
+      <button class="ai-chip">📊 গণিত নোট দেখো</button>
+      <button class="ai-chip">🔬 বিজ্ঞান ভিডিও</button>
+      <button class="ai-chip">✅ MCQ প্র্যাকটিস</button>
+      <button class="ai-chip">📅 রুটিন বানাও</button>
+    </div>
+  </div>
+
+  <!-- CLASS SECTION -->
+  <div id="classes">
+    <div class="sec-header">
+      <h2 class="sec-title">📚 <span>ক্লাস</span> বেছে নাও</h2>
+      <a href="#" class="sec-link">সব দেখো →</a>
+    </div>
+    <div class="class-grid">
+      <a href="#" class="class-card"><div class="class-num">১</div><div class="class-lbl">Class</div><div class="class-count">২০+</div></a>
+      <a href="#" class="class-card"><div class="class-num">২</div><div class="class-lbl">Class</div><div class="class-count">২৫+</div></a>
+      <a href="#" class="class-card"><div class="class-num">৩</div><div class="class-lbl">Class</div><div class="class-count">৩০+</div></a>
+      <a href="#" class="class-card"><div class="class-num">৪</div><div class="class-lbl">Class</div><div class="class-count">৩৫+</div></a>
+      <a href="#" class="class-card active"><div class="class-num">৫</div><div class="class-lbl">Class</div><div class="class-count">৪০+</div></a>
+      <a href="#" class="class-card"><div class="class-num">৬</div><div class="class-lbl">Class</div><div class="class-count">৪৫+</div></a>
+      <a href="#" class="class-card"><div class="class-num">৭</div><div class="class-lbl">Class</div><div class="class-count">৫০+</div></a>
+      <a href="#" class="class-card"><div class="class-num">৮</div><div class="class-lbl">Class</div><div class="class-count">৬০+</div></a>
+      <a href="#" class="class-card"><div class="class-num">৯</div><div class="class-lbl">Class</div><div class="class-count">৭০+</div></a>
+      <a href="#" class="class-card"><div class="class-num">১০</div><div class="class-lbl">Class</div><div class="class-count">৮০+</div></a>
+    </div>
+  </div>
+
+  <!-- CONTENT SECTION -->
+  <div>
+    <div class="sec-header">
+      <h2 class="sec-title">🔥 <span>সাম্প্রতিক</span> কন্টেন্ট</h2>
+      <a href="#" class="sec-link">সব দেখো →</a>
+    </div>
+    <div class="filters">
+      <button class="filter-btn active" onclick="filterContent(this,'all')">সব</button>
+      <button class="filter-btn" onclick="filterContent(this,'video')">🎥 ভিডিও</button>
+      <button class="filter-btn" onclick="filterContent(this,'note')">📝 নোট</button>
+      <button class="filter-btn" onclick="filterContent(this,'pdf')">📄 PDF</button>
+      <button class="filter-btn" onclick="filterContent(this,'mcq')">✅ MCQ</button>
+    </div>
+    <div class="content-grid" id="contentGrid">
+      <div class="content-card" data-type="video">
+        <div class="content-thumb thumb-blue"><span>🎥</span><span class="content-badge badge-video">ভিডিও</span></div>
+        <div class="content-body"><div class="content-subject">গণিত</div><div class="content-title">ভগ্নাংশের যোগ ও বিয়োগ সহজে শেখো</div><div class="content-meta"><span class="content-class-tag">Class 5</span><span class="content-views">👁 ১২০০</span></div></div>
+      </div>
+      <div class="content-card" data-type="note">
+        <div class="content-thumb thumb-green"><span>📝</span><span class="content-badge badge-note">নোট</span></div>
+        <div class="content-body"><div class="content-subject">বাংলা</div><div class="content-title">বাগধারা ও প্রবাদ সম্পূর্ণ নোট</div><div class="content-meta"><span class="content-class-tag">Class 8</span><span class="content-views">👁 ৯৮০</span></div></div>
+      </div>
+      <div class="content-card" data-type="pdf">
+        <div class="content-thumb thumb-amber"><span>📄</span><span class="content-badge badge-pdf">PDF</span></div>
+        <div class="content-body"><div class="content-subject">বিজ্ঞান</div><div class="content-title">পরিবেশ ও জীববিজ্ঞান অধ্যায় PDF</div><div class="content-meta"><span class="content-class-tag">Class 6</span><span class="content-views">👁 ৭৫০</span></div></div>
+      </div>
+      <div class="content-card" data-type="mcq">
+        <div class="content-thumb thumb-purple"><span>✅</span><span class="content-badge badge-mcq">MCQ</span></div>
+        <div class="content-body"><div class="content-subject">English</div><div class="content-title">Tense — ১০০টি MCQ প্র্যাকটিস সেট</div><div class="content-meta"><span class="content-class-tag">Class 9</span><span class="content-views">👁 ১৫০০</span></div></div>
+      </div>
+      <div class="content-card" data-type="video">
+        <div class="content-thumb thumb-red"><span>🎥</span><span class="content-badge badge-video">ভিডিও</span></div>
+        <div class="content-body"><div class="content-subject">পদার্থ</div><div class="content-title">নিউটনের গতিসূত্র সম্পূর্ণ ব্যাখ্যা</div><div class="content-meta"><span class="content-class-tag">Class 10</span><span class="content-views">👁 ২১০০</span></div></div>
+      </div>
+      <div class="content-card" data-type="note">
+        <div class="content-thumb thumb-green"><span>📝</span><span class="content-badge badge-note">নোট</span></div>
+        <div class="content-body"><div class="content-subject">ইতিহাস</div><div class="content-title">মুক্তিযুদ্ধ অধ্যায় সম্পূর্ণ নোট</div><div class="content-meta"><span class="content-class-tag">Class 7</span><span class="content-views">👁 ৮৮০</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUBJECT SECTION -->
+  <div>
+    <div class="sec-header">
+      <h2 class="sec-title">📖 <span>বিষয়</span> অনুযায়ী পড়ো</h2>
+    </div>
+    <div class="subject-grid">
+      <a href="#" class="subject-card"><div class="subject-icon">🔢</div><div class="subject-name">গণিত</div><div class="subject-count">১২০+ কন্টেন্ট</div></a>
+      <a href="#" class="subject-card"><div class="subject-icon">📖</div><div class="subject-name">বাংলা</div><div class="subject-count">৯৫+ কন্টেন্ট</div></a>
+      <a href="#" class="subject-card"><div class="subject-icon">🌍</div><div class="subject-name">English</div><div class="subject-count">১১০+ কন্টেন্ট</div></a>
+      <a href="#" class="subject-card"><div class="subject-icon">🔬</div><div class="subject-name">বিজ্ঞান</div><div class="subject-count">৮৫+ কন্টেন্ট</div></a>
+      <a href="#" class="subject-card"><div class="subject-icon">⚡</div><div class="subject-name">পদার্থ</div><div class="subject-count">৭০+ কন্টেন্ট</div></a>
+      <a href="#" class="subject-card"><div class="subject-icon">🧪</div><div class="subject-name">রসায়ন</div><div class="subject-count">৬৫+ কন্টেন্ট</div></a>
+      <a href="#" class="subject-card"><div class="subject-icon">🌱</div><div class="subject-name">জীববিজ্ঞান</div><div class="subject-count">৬০+ কন্টেন্ট</div></a>
+      <a href="#" class="subject-card"><div class="subject-icon">🗺️</div><div class="subject-name">ভূগোল</div><div class="subject-count">৪৫+ কন্টেন্ট</div></a>
+    </div>
+  </div>
+
+  <!-- VIDEO SECTION -->
+  <div class="video-section">
+    <div class="sec-header">
+      <h2 class="sec-title">🎥 <span>ভিডিও</span> ক্লাস</h2>
+      <a href="#" class="sec-link">সব ভিডিও →</a>
+    </div>
+    <div class="video-grid">
+      <div class="video-card">
+        <div class="video-thumb" onclick="alert('ভিডিও শীঘ্রই আসছে!')">
+          <div class="play-btn">▶️</div>
+        </div>
+        <div class="video-body">
+          <div class="video-title">ভগ্নাংশের যোগ — Class 5 গণিত</div>
+          <div class="video-meta"><span>📚 Class 5</span><span>⏱ ১৫ মিনিট</span><span>👁 ১২০০</span></div>
+        </div>
+      </div>
+      <div class="video-card">
+        <div class="video-thumb" onclick="alert('ভিডিও শীঘ্রই আসছে!')" style="background:linear-gradient(135deg,#064e3b,#10b981)">
+          <div class="play-btn">▶️</div>
+        </div>
+        <div class="video-body">
+          <div class="video-title">Present Tense সম্পূর্ণ — Class 6 English</div>
+          <div class="video-meta"><span>📚 Class 6</span><span>⏱ ২০ মিনিট</span><span>👁 ৯৫০</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#" class="logo">📚 Shin-Chan Learning Hub</a>
+        <p>Class 1-10 এর শিক্ষার্থীদের জন্য বাংলাদেশের সেরা ফ্রি শিক্ষা প্ল্যাটফর্ম।</p>
+      </div>
+      <div class="footer-col">
+        <h4>ক্লাস</h4>
+        <a href="#">Class 1-5</a>
+        <a href="#">Class 6-8</a>
+        <a href="#">Class 9-10</a>
+      </div>
+      <div class="footer-col">
+        <h4>কন্টেন্ট</h4>
+        <a href="#">ভিডিও ক্লাস</a>
+        <a href="#">নোট</a>
+        <a href="#">PDF</a>
+        <a href="#">MCQ</a>
+      </div>
+      <div class="footer-col">
+        <h4>যোগাযোগ</h4>
+        <a href="#">Facebook Page</a>
+        <a href="#">YouTube</a>
+        <a href="#">আমাদের সম্পর্কে</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© ২০২৫ Shin-Chan Learning Hub | সব অধিকার সংরক্ষিত | Made with ❤️ for Bangladesh</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleMenu(){
+  const m=document.getElementById('mobileMenu');
+  m.classList.toggle('open');
+}
+function scrollToClasses(){
+  document.getElementById('classes').scrollIntoView({behavior:'smooth'});
+}
+function filterContent(btn,type){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.content-card').forEach(card=>{
+    if(type==='all'||card.dataset.type===type){
+      card.style.display='block';
+    } else {
+      card.style.display='none';
+    }
+  });
+}
+</script>
+</body>
+</html>
