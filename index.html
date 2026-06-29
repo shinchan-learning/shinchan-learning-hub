@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shin-Chan Learning Hub | Class 1-10 শিক্ষা প্ল্যাটফর্ম</title>
+    <title>Shin-Chan Learning Hub</title>
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
@@ -72,7 +72,7 @@
 
 <div class="container">
     <div id="classes">
-        <div class="sec-header"><h2 class="sec-title">📖 <span>ক্লাস</span> অনুযায়ী ফিল্টার করুন</h2></div>
+        <div class="sec-header"><h2 class="sec-title">📖 <span>клас</span> অনুযায়ী ফিল্টার করুন</h2></div>
         <div class="class-grid">
             <div class="class-card active" onclick="filterClass('all', this)"><div class="class-num">সব</div></div>
             <div class="class-card" onclick="filterClass('1', this)"><div class="class-num">১</div><div class="class-lbl">Class 1</div></div>
@@ -107,19 +107,10 @@
 </footer>
 
 <script>
-// কোনো ম্যানুয়াল আইডি বসানোর ঝামেলা নেই, সরাসরি শিটের পুরো সঠিক লিঙ্কটি এখানে দেওয়া হলো
-const GOOGLE_SHEET_URL = "https://docs.google.com/spreadsheets/d/18zWcpnwm7RRteESnYOXy9mAzLZF_PM3tLIgRF-oWeT4/edit?gid=0#gid=0";
+// আপনার শিট আইডি এখানে ১০০% সঠিক উপায়ে বসানো হয়েছে
+const SHEET_ID = '18zWcpnwm7RRteESnYOXy9mAzLZF_PM3tLIgRF-oWeT4';
+const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json`;
 
-// লিঙ্ক থেকে আইডি আলাদা করার অটোমেটিক ফাংশন
-function getJsonUrl(url) {
-    const matches = url.match(/\/d\/([^/]+)/);
-    if (matches && matches[1]) {
-        return `https://docs.google.com/spreadsheets/d/${matches[1]}/gviz/tq?tqx=out:json`;
-    }
-    return '';
-}
-
-const SHEET_URL = getJsonUrl(GOOGLE_SHEET_URL);
 let allContents = [];
 let currentClass = 'all';
 let currentType = 'all';
@@ -128,22 +119,32 @@ async function fetchSheetData() {
     try {
         const response = await fetch(SHEET_URL);
         const text = await response.text();
-        const jsonData = JSON.parse(text.substr(47).slice(0, -3));
+        
+        // ক্লিন ডাটা এক্সট্রাক্ট করার সিকিউর মেকানিজম
+        const startIdx = text.indexOf('{');
+        const endIdx = text.lastIndexOf('}') + 1;
+        if(startIdx === -1 || endIdx === -1) throw new Error("Invalid JSON");
+        
+        const jsonStr = text.substring(startIdx, endIdx);
+        const jsonData = JSON.parse(jsonStr);
         const rows = jsonData.table.rows;
         
-        allContents = rows.map(row => ({
-            title: row.c[0] ? row.c[0].v : '',
-            subject: row.c[1] ? row.c[1].v : '',
-            cls: row.c[2] ? String(row.c[2].v) : '',
-            type: row.c[3] ? row.c[3].v.toLowerCase().trim() : '',
-            link: row.c[4] ? row.c[4].v : '#'
-        }));
+        allContents = rows.map(row => {
+            if (!row.c || row.c.length < 5) return null;
+            return {
+                title: row.c[0] ? String(row.c[0].v || row.c[0].f || '') : '',
+                subject: row.c[1] ? String(row.c[1].v || row.c[1].f || '') : '',
+                cls: row.c[2] ? String(row.c[2].v || row.c[2].f || '') : '',
+                type: row.c[3] ? String(row.c[3].v || row.c[3].f || '').toLowerCase().trim() : '',
+                link: row.c[4] ? String(row.c[4].v || row.c[4].f || '#') : '#'
+            };
+        }).filter(item => item !== null && item.title !== 'title'); // হেডার বাদ দেওয়ার জন্য
 
         document.getElementById('loadingText').style.display = 'none';
         displayContents();
     } catch (error) {
         console.error('Error fetching data:', error);
-        document.getElementById('loadingText').innerText = 'ডাটা লোড করতে সমস্যা হয়েছে! শিটের Share অপশনে গিয়ে Anyone with the link (Viewer) করা আছে কিনা নিশ্চিত করো।';
+        document.getElementById('loadingText').innerText = 'ডাটা লোড করতে সমস্যা হয়েছে! শিটের Share অপশনে গিয়ে Anyone with the link (Viewer) এবং Publish to Web করা আছে কিনা নিশ্চিত করো।';
     }
 }
 
@@ -153,8 +154,10 @@ function displayContents() {
 
     let hasData = false;
 
-    for (let i = allContents.length - 1; i >= 0; i--) {
+    for (let i = 0; i < allContents.length; i++) {
         const item = allContents[i];
+        if(!item.title) continue;
+        
         const classMatch = (currentClass === 'all' || item.cls === currentClass);
         const typeMatch = (currentType === 'all' || item.type === currentType);
 
