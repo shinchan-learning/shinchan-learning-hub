@@ -107,10 +107,19 @@
 </footer>
 
 <script>
-// এখানে একদম সঠিক আইডিটি বসানো হয়েছে (ছোট হাতের l সহ)
-const SHEET_ID = '18zWcpnwm7RRteESnYOXy9mAzLZF_PM3tLlgRF-oWeT4'; 
-const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json`;
+// কোনো ম্যানুয়াল আইডি বসানোর ঝামেলা নেই, সরাসরি শিটের পুরো সঠিক লিঙ্কটি এখানে দেওয়া হলো
+const GOOGLE_SHEET_URL = "https://docs.google.com/spreadsheets/d/18zWcpnwm7RRteESnYOXy9mAzLZF_PM3tLIgRF-oWeT4/edit?gid=0#gid=0";
 
+// লিঙ্ক থেকে আইডি আলাদা করার অটোমেটিক ফাংশন
+function getJsonUrl(url) {
+    const matches = url.match(/\/d\/([^/]+)/);
+    if (matches && matches[1]) {
+        return `https://docs.google.com/spreadsheets/d/${matches[1]}/gviz/tq?tqx=out:json`;
+    }
+    return '';
+}
+
+const SHEET_URL = getJsonUrl(GOOGLE_SHEET_URL);
 let allContents = [];
 let currentClass = 'all';
 let currentType = 'all';
