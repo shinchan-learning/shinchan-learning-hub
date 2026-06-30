@@ -105,7 +105,11 @@ nav{background:rgba(255,255,255,0.85);backdrop-filter:blur(10px);border-bottom:1
 .filter-btn{padding:8px 18px;border-radius:22px;border:1.5px solid var(--border);background:white;font-size:13px;cursor:pointer;font-family:inherit;font-weight:600;color:var(--text-secondary);transition:all 0.2s}
 .filter-btn:hover,.filter-btn.active{background:var(--primary);border-color:var(--primary);color:white;box-shadow:0 4px 10px rgba(37,99,235,0.25)}
 
+/* CONTENT CONTAINER TYPES */
 .content-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:20px}
+.content-list{display:flex;flex-direction:column;gap:12px;margin-bottom:20px;grid-column: 1 / -1; width:100%}
+
+/* CARD VIEW STYLE */
 .content-card{background:white;border-radius:16px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--border);transition:all 0.25s;display:flex;flex-direction:column}
 .content-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-hover);border-color:#bfdbfe}
 .content-thumb{height:120px;display:flex;align-items:center;justify-content:center;font-size:40px;position:relative}
@@ -123,6 +127,18 @@ nav{background:rgba(255,255,255,0.85);backdrop-filter:blur(10px);border-bottom:1
 .content-class-tag{font-size:11px;background:var(--bg);color:var(--text-secondary);padding:3px 9px;border-radius:6px;font-weight:600;display:inline-block;width:fit-content}
 .content-btn{display:flex;align-items:center;justify-content:center;gap:6px;text-align:center;background:var(--primary);color:white;text-decoration:none;padding:10px;border-radius:9px;font-size:13px;font-weight:700;transition:background .2s;border:none;cursor:pointer;font-family:inherit;width:100%}
 .content-btn:hover{background:var(--primary-dark)}
+
+/* NEW LIST VIEW STYLE FOR PDF & NOTES */
+.content-list-row {background:white; border-radius:12px; border:1px solid var(--border); padding:12px 16px; display:flex; align-items:center; justify-content:space-between; gap:16px; box-shadow:var(--shadow); transition:all 0.2s}
+.content-list-row:hover {border-color:var(--primary); transform:translateX(4px); box-shadow:var(--shadow-hover)}
+.list-left {display:flex; align-items:center; gap:14px; flex:1}
+.list-icon {font-size:24px; width:44px; height:44px; border-radius:10px; display:flex; align-items:center; justify-content:center; flex-shrink:0}
+.list-details {display:flex; flex-direction:column; gap:2px}
+.list-meta {display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+.list-title {font-size:14.5px; font-weight:700; color:var(--text)}
+.list-btn {background:var(--primary-light); color:var(--primary); border:none; padding:8px 16px; border-radius:8px; font-size:13px; font-weight:700; cursor:pointer; transition:all 0.2s; white-space:nowrap}
+.list-btn:hover {background:var(--primary); color:white}
+
 .empty-state{text-align:center;padding:50px 20px;color:var(--text-secondary);font-size:14px;grid-column:1/-1;background:white;border-radius:16px;border:1.5px dashed var(--border)}
 
 .subject-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:48px}
@@ -181,6 +197,8 @@ footer{background:#0f172a;color:#94a3b8;padding:0 20px 22px;margin-top:30px}
   .footer-brand-text{text-align:center}
   .footer-bottom{flex-direction:column;text-align:center}
   .modal-box iframe{height:40vh}
+  .content-list-row {flex-direction:column; align-items:flex-start; gap:10px}
+  .list-btn {width:100%; text-align:center}
 }
 @media(max-width:480px){
   .content-grid{grid-template-columns:1fr}
@@ -361,11 +379,6 @@ footer{background:#0f172a;color:#94a3b8;padding:0 20px 22px;margin-top:30px}
 </footer>
 
 <script>
-/* =========================================================
-   GOOGLE SHEET থেকে ডাটা লোড হয় — কোনো কোড এডিট করা লাগে না।
-   নতুন content যোগ করতে শুধু Google Sheet-এ নতুন রো বসাও।
-   Sheet column order: Title | Subject | Class | Type | Link
-   ========================================================= */
 const SHEET_ID = '18zWcpnwm7RRteESnYOXy9mAzLZF_PM3tLIgRF-oWeT4';
 const GVIZ_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json`;
 
@@ -379,14 +392,12 @@ let activeClass = null;
 
 function toggleMenu(){ document.getElementById('mobileMenu').classList.toggle('open'); }
 
-/* Drive লিংক হোক বা শুধু ID — দুটোই থেকে ID বের করে */
 function extractDriveId(value){
   if(!value) return '';
   const match = value.match(/\/d\/([a-zA-Z0-9_-]{10,})/);
   if(match) return match[1];
   return value.trim();
 }
-/* YouTube লিংক হোক বা শুধু ID — দুটো থেকেই ID বের করে */
 function extractYoutubeId(value){
   if(!value) return '';
   let m = value.match(/(?:youtu\.be\/|v=|embed\/)([a-zA-Z0-9_-]{6,})/);
@@ -399,7 +410,6 @@ async function loadSheetData(){
     const res = await fetch(GVIZ_URL);
     if(!res.ok) throw new Error('fetch failed: ' + res.status);
     const text = await res.text();
-    // gviz wraps JSON in: google.visualization.Query.setResponse(...);
     const jsonStr = text.substring(text.indexOf('{'), text.lastIndexOf('}') + 1);
     const data = JSON.parse(jsonStr);
     const rows = data.table.rows || [];
@@ -445,7 +455,7 @@ function setClassFilter(c){
 function renderClasses(){
   const grid = document.getElementById('classGrid');
   grid.innerHTML = "";
-  const bn = ["০","১","২","৩","৪","৫","৬","৭","৮","৯","১০"];
+  const bn = ["০","১","২","৩","৪","৫","৬","৭ ashes","৮","৯","১০"];
   const allBtn = document.createElement('div');
   allBtn.className = "class-card" + (activeClass===null ? " active" : "");
   allBtn.onclick = ()=>{ activeClass=null; renderClasses(); renderContent(); };
@@ -485,22 +495,15 @@ function closeModal(){
   document.getElementById('videoFrame').src = "";
 }
 
-/* =========================================================
-   স্মার্ট সার্চ ইঞ্জিন — exact match, partial match, এবং
-   সামান্য বানান ভুল (typo) হলেও কাছাকাছি ফলাফল খুঁজে বের করে।
-   কোনো বাইরের API লাগে না, সম্পূর্ণ লোকাল লজিক।
-   ========================================================= */
 function normalize(str){
   return (str || '').toLowerCase().trim();
 }
 
-// দুটো শব্দের মধ্যে কতটা মিল আছে তা মাপে (0 = কোনো মিল নেই, 1 = হুবহু এক)
 function similarity(a, b){
   a = normalize(a); b = normalize(b);
   if(!a || !b) return 0;
   if(a === b) return 1;
   if(b.includes(a) || a.includes(b)) return 0.85;
-  // সাধারণ অক্ষর গণনা করে আনুমানিক মিল বের করা (lightweight fuzzy match)
   let matches = 0;
   const shorter = a.length < b.length ? a : b;
   const longer = a.length < b.length ? b : a;
@@ -518,7 +521,6 @@ function scoreItem(item, query){
   let score = 0;
   if(title.includes(q)) score = Math.max(score, 1);
   if(subject.includes(q)) score = Math.max(score, 0.9);
-  // শব্দ-ভিত্তিক আংশিক মিল (টোকেন ম্যাচিং)
   const queryTokens = q.split(/\s+/).filter(Boolean);
   const titleTokens = title.split(/\s+/).filter(Boolean);
   queryTokens.forEach(qt=>{
@@ -534,13 +536,11 @@ function getSuggestions(query){
   if(!q || q.length < 1) return [];
   const results = [];
 
-  // কন্টেন্ট সাজেশন
   allContent.forEach(c=>{
     const s = scoreItem(c, q);
     if(s >= 0.45) results.push({type:'content', score:s, item:c});
   });
 
-  // বিষয় সাজেশন
   const subjects = [...new Set(allContent.map(c=>c.subject).filter(Boolean))];
   subjects.forEach(s=>{
     const sim = similarity(q, s);
@@ -589,6 +589,9 @@ function renderSuggestions(){
   });
 }
 
+/* =========================================================
+   লিস্ট ভিউ এর জন্য কাস্টমাইজড রেন্ডার ফাংশন
+   ========================================================= */
 function renderContent(){
   const grid = document.getElementById('contentGrid');
   const query = document.getElementById('searchInput').value.trim();
@@ -612,36 +615,66 @@ function renderContent(){
 
   document.getElementById('contentCount').textContent = allContent.length;
   grid.innerHTML = "";
+  
   if(items.length===0){
     grid.innerHTML = `<div class="empty-state">😕 "${query}" এর সাথে মিলে এমন কিছু পাওয়া যায়নি।<br>বানান চেক করো অথবা অন্য শব্দ দিয়ে খোঁজো — শীঘ্রই নতুন কন্টেন্ট যোগ হবে।</div>`;
     return;
   }
+
+  // ভিডিওর জন্য কার্ড গ্রিড এবং PDF/Note এর জন্য লিস্ট কন্টেইনার তৈরি করা হচ্ছে
+  const listContainer = document.createElement('div');
+  listContainer.className = "content-list";
+  let hasListItems = false;
+
   items.forEach((c,i)=>{
     const badge = badgeMap[c.type] || badgeMap.note;
-    const thumb = thumbClasses[i % thumbClasses.length];
-    const card = document.createElement('div');
-    card.className = "content-card";
     const isVideo = c.type === 'video';
-    const btnLabel = isVideo ? '📺 ভিডিওটি দেখো' : '📥 ড্রাইভ থেকে দেখো';
-    card.innerHTML = `
-      <div class="content-thumb ${thumb}"><span>${badge.icon}</span><span class="content-badge ${badge.cls}">${badge.label}</span></div>
-      <div class="content-body">
-        <div class="content-subject">${c.subject || 'সাধারণ'}</div>
-        <div class="content-title">${c.title}</div>
-        <div class="content-class-tag">Class ${c.class || '—'}</div>
-        <button class="content-btn">${btnLabel}</button>
-      </div>`;
-    card.querySelector('.content-btn').onclick = ()=>{
-      if(isVideo) openVideo(c.youtubeId);
-      else {
+
+    if (isVideo) {
+      // ভিডিওগুলো আগের মতো কার্ড আকারেই থাকবে
+      const thumb = thumbClasses[i % thumbClasses.length];
+      const card = document.createElement('div');
+      card.className = "content-card";
+      card.innerHTML = `
+        <div class="content-thumb ${thumb}"><span>${badge.icon}</span><span class="content-badge ${badge.cls}">${badge.label}</span></div>
+        <div class="content-body">
+          <div class="content-subject">${c.subject || 'সাধারণ'}</div>
+          <div class="content-title">${c.title}</div>
+          <div class="content-class-tag">Class ${c.class || '—'}</div>
+          <button class="content-btn">📺 ভিডিওটি দেখো</button>
+        </div>`;
+      card.querySelector('.content-btn').onclick = () => openVideo(c.youtubeId);
+      grid.appendChild(card);
+    } else {
+      // PDF এবং নোটগুলো সুন্দর লিস্ট আকারে সাজানো হবে
+      hasListItems = true;
+      const listRow = document.createElement('div');
+      listRow.className = "content-list-row";
+      listRow.innerHTML = `
+        <div class="list-left">
+          <div class="list-icon" style="background:${badge.cls==='badge-pdf'?'#fef3c7':'#dcfce7'}">${badge.icon}</div>
+          <div class="list-details">
+            <div class="list-title">${c.title}</div>
+            <div class="list-meta">
+              <span class="content-subject">${c.subject || 'সাধারণ'}</span>
+              <span class="content-class-tag">Class ${c.class || '—'}</span>
+            </div>
+          </div>
+        </div>
+        <button class="list-btn">${c.type === 'pdf' ? '📄 PDF ওপেন করো' : '📝 নোটটি দেখো'}</button>
+      `;
+      listRow.querySelector('.list-btn').onclick = () => {
         if(!c.driveId){ alert("এই ফাইলটি এখনো ঠিকভাবে যোগ করা হয়নি।"); return; }
         window.open(`https://drive.google.com/file/d/${c.driveId}/preview`, '_blank');
-      }
-    };
-    grid.appendChild(card);
+      };
+      listContainer.appendChild(listRow);
+    }
   });
-}
 
+  if (hasListItems) {
+    grid.appendChild(listContainer);
+  }
+}
 
 function renderAll(){
   renderClasses();
