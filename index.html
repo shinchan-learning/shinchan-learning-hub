@@ -73,10 +73,20 @@ nav{background:rgba(255,255,255,0.85);backdrop-filter:blur(10px);border-bottom:1
 .sec-title{font-size:22px;font-weight:800;letter-spacing:-0.3px}
 .sec-title span{color:var(--primary)}
 
-.search-box{display:flex;gap:10px;margin-bottom:28px;background:white;padding:6px;border-radius:14px;border:1.5px solid var(--border);box-shadow:var(--shadow)}
+.search-box{position:relative;display:flex;gap:10px;margin-bottom:8px;background:white;padding:6px;border-radius:14px;border:1.5px solid var(--border);box-shadow:var(--shadow)}
 .search-box input{flex:1;padding:12px 14px;border:none;border-radius:10px;font-size:14px;font-family:inherit;background:transparent}
 .search-box input:focus{outline:none}
 .search-box button{background:var(--primary);color:white;border:none;padding:0 22px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer}
+.search-suggest{position:absolute;top:calc(100% + 6px);left:0;right:0;background:white;border:1.5px solid var(--border);border-radius:14px;box-shadow:var(--shadow-hover);z-index:50;overflow:hidden;display:none}
+.search-suggest.open{display:block}
+.search-suggest-item{padding:11px 16px;font-size:13.5px;cursor:pointer;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border)}
+.search-suggest-item:last-child{border-bottom:none}
+.search-suggest-item:hover{background:var(--primary-light)}
+.search-suggest-icon{font-size:15px;flex-shrink:0}
+.search-suggest-text{flex:1}
+.search-suggest-text b{color:var(--primary)}
+.search-suggest-tag{font-size:10.5px;color:var(--text-secondary);background:var(--bg);padding:2px 8px;border-radius:6px;flex-shrink:0}
+.search-hint{font-size:12px;color:var(--text-secondary);margin-bottom:24px;padding-left:4px}
 
 .class-grid{display:grid;grid-template-columns:repeat(11,1fr);gap:10px;margin-bottom:48px}
 .class-card{background:white;border:1.5px solid var(--border);border-radius:13px;padding:16px 6px;text-align:center;cursor:pointer;transition:all 0.2s}
@@ -244,9 +254,11 @@ footer{background:#0f172a;color:#94a3b8;padding:0 20px 22px;margin-top:30px}
   </div>
 
   <div class="search-box">
-    <input type="text" id="searchInput" placeholder="যা খুঁজছো লেখো — যেমন: ভগ্নাংশ, Tense, মুক্তিযুদ্ধ...">
+    <input type="text" id="searchInput" placeholder="যা খুঁজছো লেখো — যেমন: ভগ্নাংশ, Tense, মুক্তিযুদ্ধ..." autocomplete="off">
     <button onclick="document.getElementById('searchInput').focus()">🔍 খোঁজো</button>
+    <div class="search-suggest" id="searchSuggest"></div>
   </div>
+  <div class="search-hint">💡 লেখা শুরু করলেই প্রাসঙ্গিক ক্লাস, বিষয় ও কন্টেন্ট সাজেস্ট হবে — বানান একটু ভুল হলেও সমস্যা নেই।</div>
 
   <div id="classes">
     <div class="sec-header">
@@ -457,7 +469,7 @@ function renderSubjects(){
     const count = allContent.filter(c=>c.subject===s).length;
     const card = document.createElement('div');
     card.className = "subject-card";
-    card.onclick = ()=>{ document.getElementById('searchInput').value = s; renderContent(); document.getElementById('contents').scrollIntoView({behavior:'smooth'}); };
+    card.onclick = ()=>{ document.getElementById('searchInput').value = s; document.getElementById('searchSuggest').classList.remove('open'); renderContent(); document.getElementById('contents').scrollIntoView({behavior:'smooth'}); };
     card.innerHTML = `<div class="subject-icon">${subjectIcons[s] || "📘"}</div><div class="subject-name">${s}</div><div class="subject-count">${count} টি কন্টেন্ট</div>`;
     grid.appendChild(card);
   });
@@ -473,19 +485,135 @@ function closeModal(){
   document.getElementById('videoFrame').src = "";
 }
 
+/* =========================================================
+   স্মার্ট সার্চ ইঞ্জিন — exact match, partial match, এবং
+   সামান্য বানান ভুল (typo) হলেও কাছাকাছি ফলাফল খুঁজে বের করে।
+   কোনো বাইরের API লাগে না, সম্পূর্ণ লোকাল লজিক।
+   ========================================================= */
+function normalize(str){
+  return (str || '').toLowerCase().trim();
+}
+
+// দুটো শব্দের মধ্যে কতটা মিল আছে তা মাপে (0 = কোনো মিল নেই, 1 = হুবহু এক)
+function similarity(a, b){
+  a = normalize(a); b = normalize(b);
+  if(!a || !b) return 0;
+  if(a === b) return 1;
+  if(b.includes(a) || a.includes(b)) return 0.85;
+  // সাধারণ অক্ষর গণনা করে আনুমানিক মিল বের করা (lightweight fuzzy match)
+  let matches = 0;
+  const shorter = a.length < b.length ? a : b;
+  const longer = a.length < b.length ? b : a;
+  for(let i=0;i<shorter.length;i++){
+    if(longer.includes(shorter[i])) matches++;
+  }
+  return matches / longer.length;
+}
+
+function scoreItem(item, query){
+  const q = normalize(query);
+  if(!q) return 1;
+  const title = normalize(item.title);
+  const subject = normalize(item.subject);
+  let score = 0;
+  if(title.includes(q)) score = Math.max(score, 1);
+  if(subject.includes(q)) score = Math.max(score, 0.9);
+  // শব্দ-ভিত্তিক আংশিক মিল (টোকেন ম্যাচিং)
+  const queryTokens = q.split(/\s+/).filter(Boolean);
+  const titleTokens = title.split(/\s+/).filter(Boolean);
+  queryTokens.forEach(qt=>{
+    titleTokens.forEach(tt=>{
+      score = Math.max(score, similarity(qt, tt) * 0.8);
+    });
+  });
+  return score;
+}
+
+function getSuggestions(query){
+  const q = normalize(query);
+  if(!q || q.length < 1) return [];
+  const results = [];
+
+  // কন্টেন্ট সাজেশন
+  allContent.forEach(c=>{
+    const s = scoreItem(c, q);
+    if(s >= 0.45) results.push({type:'content', score:s, item:c});
+  });
+
+  // বিষয় সাজেশন
+  const subjects = [...new Set(allContent.map(c=>c.subject).filter(Boolean))];
+  subjects.forEach(s=>{
+    const sim = similarity(q, s);
+    if(sim >= 0.4) results.push({type:'subject', score:sim + 0.05, item:{subject:s}});
+  });
+
+  results.sort((a,b)=>b.score - a.score);
+  return results.slice(0, 6);
+}
+
+function renderSuggestions(){
+  const box = document.getElementById('searchSuggest');
+  const query = document.getElementById('searchInput').value;
+  if(!query.trim()){ box.classList.remove('open'); box.innerHTML=''; return; }
+
+  const suggestions = getSuggestions(query);
+  if(suggestions.length === 0){
+    box.innerHTML = `<div class="search-suggest-item" style="cursor:default">😕 কাছাকাছি কিছু পাওয়া যায়নি — সব কন্টেন্টের মধ্যে দেখানো হচ্ছে</div>`;
+    box.classList.add('open');
+    return;
+  }
+
+  box.innerHTML = suggestions.map(s=>{
+    if(s.type === 'content'){
+      const badge = badgeMap[s.item.type] || badgeMap.note;
+      return `<div class="search-suggest-item" data-q="${s.item.title.replace(/"/g,'&quot;')}">
+        <span class="search-suggest-icon">${badge.icon}</span>
+        <span class="search-suggest-text">${s.item.title}</span>
+        <span class="search-suggest-tag">Class ${s.item.class}</span>
+      </div>`;
+    } else {
+      return `<div class="search-suggest-item" data-q="${s.item.subject}">
+        <span class="search-suggest-icon">📖</span>
+        <span class="search-suggest-text">"<b>${s.item.subject}</b>" বিষয়ের সব কন্টেন্ট দেখো</span>
+      </div>`;
+    }
+  }).join('');
+  box.classList.add('open');
+
+  box.querySelectorAll('.search-suggest-item[data-q]').forEach(el=>{
+    el.onclick = ()=>{
+      document.getElementById('searchInput').value = el.getAttribute('data-q');
+      box.classList.remove('open');
+      renderContent();
+    };
+  });
+}
+
 function renderContent(){
   const grid = document.getElementById('contentGrid');
-  const query = document.getElementById('searchInput').value.trim().toLowerCase();
-  let items = allContent.filter(c=>{
+  const query = document.getElementById('searchInput').value.trim();
+  let items;
+
+  if(!query){
+    items = allContent.slice();
+  } else {
+    items = allContent
+      .map(c=>({item:c, score:scoreItem(c, query)}))
+      .filter(r=>r.score >= 0.4)
+      .sort((a,b)=>b.score - a.score)
+      .map(r=>r.item);
+  }
+
+  items = items.filter(c=>{
     const matchType = activeFilter==='all' || c.type===activeFilter;
     const matchClass = activeClass===null || c.class===activeClass;
-    const matchSearch = !query || c.title.toLowerCase().includes(query) || c.subject.toLowerCase().includes(query);
-    return matchType && matchClass && matchSearch;
+    return matchType && matchClass;
   });
+
   document.getElementById('contentCount').textContent = allContent.length;
   grid.innerHTML = "";
   if(items.length===0){
-    grid.innerHTML = `<div class="empty-state">😕 কোনো কন্টেন্ট পাওয়া যায়নি।<br>শীঘ্রই নতুন কন্টেন্ট যোগ হবে — Telegram চ্যানেলে জয়েন থাকো।</div>`;
+    grid.innerHTML = `<div class="empty-state">😕 "${query}" এর সাথে মিলে এমন কিছু পাওয়া যায়নি।<br>বানান চেক করো অথবা অন্য শব্দ দিয়ে খোঁজো — শীঘ্রই নতুন কন্টেন্ট যোগ হবে।</div>`;
     return;
   }
   items.forEach((c,i)=>{
@@ -514,13 +642,20 @@ function renderContent(){
   });
 }
 
+
 function renderAll(){
   renderClasses();
   renderSubjects();
   renderContent();
 }
 
-document.getElementById('searchInput').addEventListener('input', renderContent);
+document.getElementById('searchInput').addEventListener('input', ()=>{ renderSuggestions(); renderContent(); });
+document.getElementById('searchInput').addEventListener('focus', renderSuggestions);
+document.addEventListener('click', (e)=>{
+  const box = document.getElementById('searchSuggest');
+  const input = document.getElementById('searchInput');
+  if(!box.contains(e.target) && e.target !== input) box.classList.remove('open');
+});
 loadSheetData();
 </script>
 </body>
