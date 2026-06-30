@@ -183,7 +183,7 @@ footer{background:#0f172a;color:#94a3b8;padding:0 20px 22px;margin-top:30px}
 
 <nav>
   <div class="nav-inner">
-    <a href="#" class="logo"><img src="IMG_20260630_012900_648.jpg" alt="Shin-Chan Learning Hub" class="logo-img"> <span>Shin-Chan Learning Hub</span></a>
+    <a href="#" class="logo"><img src="IMG_20260630_012900_648.jpg" alt="logo" class="logo-img" onerror="this.outerHTML='📚'"> <span>Shin-Chan Learning Hub</span></a>
     <div class="nav-links">
       <a href="#" >হোম</a>
       <a href="#classes">ক্লাস</a>
@@ -299,7 +299,7 @@ footer{background:#0f172a;color:#94a3b8;padding:0 20px 22px;margin-top:30px}
   <div class="footer-inner">
 
     <div class="footer-brand-strip">
-      <div class="footer-brand-logo"><img src="IMG_20260630_012900_648.jpg" alt="Shin-Chan Learning Hub logo" class="footer-logo-img"></div>
+      <div class="footer-brand-logo"><img src="IMG_20260630_012900_648.jpg" alt="logo" class="footer-logo-img" onerror="this.outerHTML='📚'"></div>
       <div class="footer-brand-text">
         <h3>Shin-Chan Learning Hub</h3>
         <p>Class 1-10 এর শিক্ষার্থীদের জন্য ফ্রি ভিডিও ক্লাস, নোট ও PDF। সহজ, নির্ভরযোগ্য, এবং সবার জন্য উন্মুক্ত একটি শিক্ষা প্ল্যাটফর্ম।</p>
@@ -355,8 +355,7 @@ footer{background:#0f172a;color:#94a3b8;padding:0 20px 22px;margin-top:30px}
    Sheet column order: Title | Subject | Class | Type | Link
    ========================================================= */
 const SHEET_ID = '18zWcpnwm7RRteESnYOXy9mAzLZF_PM3tLIgRF-oWeT4';
-const GID = '0';
-const CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=${GID}`;
+const GVIZ_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json`;
 
 const subjectIcons = {"গণিত":"🔢","বাংলা":"📖","English":"🌍","বিজ্ঞান":"🔬","পদার্থ":"⚡","রসায়ন":"🧪","জীববিজ্ঞান":"🌱","ভূগোল":"🗺️","ইতিহাস":"🏛️"};
 const thumbClasses = ["thumb-blue","thumb-green","thumb-amber","thumb-purple"];
@@ -367,28 +366,6 @@ let activeFilter = "all";
 let activeClass = null;
 
 function toggleMenu(){ document.getElementById('mobileMenu').classList.toggle('open'); }
-
-/* ---------- CSV পার্সার (কমার মধ্যে কমা/quote সামলায়) ---------- */
-function parseCSV(text){
-  const rows = [];
-  let row = [""], inQuotes = false;
-  for(let i=0;i<text.length;i++){
-    const c = text[i], next = text[i+1];
-    if(c === '"'){
-      if(inQuotes && next === '"'){ row[row.length-1] += '"'; i++; }
-      else inQuotes = !inQuotes;
-    } else if(c === ',' && !inQuotes){
-      row.push('');
-    } else if((c === '\r' || c === '\n') && !inQuotes){
-      if(c === '\r' && next === '\n') i++;
-      rows.push(row); row = [''];
-    } else {
-      row[row.length-1] += c;
-    }
-  }
-  if(row.length > 1 || row[0] !== '') rows.push(row);
-  return rows;
-}
 
 /* Drive লিংক হোক বা শুধু ID — দুটোই থেকে ID বের করে */
 function extractDriveId(value){
@@ -407,27 +384,35 @@ function extractYoutubeId(value){
 
 async function loadSheetData(){
   try{
-    const res = await fetch(CSV_URL);
-    if(!res.ok) throw new Error('fetch failed');
+    const res = await fetch(GVIZ_URL);
+    if(!res.ok) throw new Error('fetch failed: ' + res.status);
     const text = await res.text();
-    const rows = parseCSV(text);
-    allContent = rows.slice(1).map(r=>{
-      if(!r[0] || !r[0].trim()) return null;
-      const type = (r[3] || '').toLowerCase().trim();
-      const rawLink = r[4] || '';
+    // gviz wraps JSON in: google.visualization.Query.setResponse(...);
+    const jsonStr = text.substring(text.indexOf('{'), text.lastIndexOf('}') + 1);
+    const data = JSON.parse(jsonStr);
+    const rows = data.table.rows || [];
+
+    allContent = rows.map(row => {
+      const cells = row.c || [];
+      const get = (i) => (cells[i] && cells[i].v !== null && cells[i].v !== undefined) ? String(cells[i].v).trim() : '';
+      const title = get(0);
+      if(!title) return null;
+      const type = get(3).toLowerCase();
+      const rawLink = get(4);
       return {
-        title: (r[0]||'').trim(),
-        subject: (r[1]||'').trim(),
-        class: parseInt((r[2]||'0').trim(), 10),
+        title: title,
+        subject: get(1),
+        class: parseInt(get(2) || '0', 10),
         type: type,
         youtubeId: type === 'video' ? extractYoutubeId(rawLink) : '',
         driveId: type !== 'video' ? extractDriveId(rawLink) : ''
       };
     }).filter(Boolean);
+
     renderAll();
   }catch(err){
     document.getElementById('contentGrid').innerHTML =
-      `<div class="empty-state">⚠️ কন্টেন্ট লোড করতে সমস্যা হয়েছে।<br>Google Sheet-টি "Anyone with the link – Viewer" হিসেবে Share করা আছে কিনা চেক করো।</div>`;
+      `<div class="empty-state">⚠️ কন্টেন্ট লোড করতে সমস্যা হয়েছে।<br>Google Sheet-টি "Anyone with the link – Viewer" হিসেবে Share করা আছে কিনা চেক করো।<br><span style="font-size:11px;color:#94a3b8">(${err.message})</span></div>`;
   }
 }
 
