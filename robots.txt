@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://shinchan-learning.github.io/shinchan-learning-hub/sitemap.xml
