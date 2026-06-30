@@ -1,212 +1,501 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shin-Chan Learning Hub</title>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        *{margin:0;padding:0;box-sizing:border-box}
-        :root{
-            --primary:#2563eb;--primary-dark:#1d4ed8;--primary-light:#eff6ff;
-            --text:#1e293b;--text-secondary:#64748b;--border:#e2e8f0;
-            --bg:#f8fafc;--white:#ffffff;
-            --shadow:0 4px 6px -1px rgba(0,0,0,0.1);
-        }
-        body{font-family:'Hind Siliguri',sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6}
-        nav{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;padding:0 20px}
-        .nav-inner{max-width:1100px;margin:0 auto;height:60px;display:flex;align-items:center;justify-content:space-between}
-        .logo{font-size:22px;font-weight:700;color:var(--primary);text-decoration:none}
-        .nav-links{display:flex;gap:4px}
-        .nav-links a{padding:7px 13px;border-radius:8px;text-decoration:none;font-size:14px;color:var(--text-secondary);font-weight:500}
-        .nav-links a.active{background:var(--primary-light);color:var(--primary)}
-        .hero{background:linear-gradient(135deg,#1e40af 0%,#3b82f6 60%,#06b6d4 100%);color:white;padding:60px 20px;text-align:center}
-        .hero h1{font-size:36px;font-weight:700;margin-bottom:12px}
-        .hero p{font-size:17px;opacity:0.9;margin-bottom:20px}
-        .container{max-width:1100px;margin:0 auto;padding:36px 20px}
-        .sec-header{margin-bottom:18px}
-        .sec-title{font-size:22px;font-weight:700}
-        .sec-title span{color:var(--primary)}
-        .class-grid{display:grid;grid-template-columns:repeat(11,1fr);gap:8px;margin-bottom:44px}
-        .class-card{background:white;border:1.5px solid var(--border);border-radius:12px;padding:15px 5px;text-align:center;cursor:pointer;transition:all 0.2s}
-        .class-card:hover,.class-card.active{border-color:var(--primary);background:var(--primary-light)}
-        .class-num{font-size:24px;font-weight:700;color:var(--primary)}
-        .class-lbl{font-size:11px;color:var(--text-secondary)}
-        .filters{display:flex;gap:8px;margin-bottom:18px}
-        .filter-btn{padding:7px 16px;border-radius:20px;border:1.5px solid var(--border);background:white;font-size:13px;cursor:pointer;font-weight:500}
-        .filter-btn.active{background:var(--primary);color:white;border-color:var(--primary)}
-        .content-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:44px}
-        .content-card{background:white;border-radius:14px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--border);display:flex;flex-direction:column}
-        .content-thumb{height:120px;display:flex;align-items:center;justify-content:center;font-size:40px;position:relative}
-        .thumb-pdf{background:linear-gradient(135deg,#dcfce7,#bbf7d0)}
-        .thumb-video{background:linear-gradient(135deg,#fef3c7,#fde68a)}
-        .content-badge{position:absolute;top:10px;right:10px;font-size:11px;font-weight:600;padding:4px 10px;border-radius:6px}
-        .badge-video{background:#fee2e2;color:#dc2626}
-        .badge-pdf{background:#fef3c7;color:#d97706}
-        .content-body{padding:16px;flex-grow:1;display:flex;flex-direction:column;justify-content:space-between}
-        .content-subject{font-size:12px;color:var(--primary);font-weight:600;margin-bottom:4px}
-        .content-title{font-size:15px;font-weight:600;line-height:1.4;margin-bottom:12px;color:var(--text)}
-        .content-btn{display:block;text-align:center;background:var(--primary);color:white;text-decoration:none;padding:10px;border-radius:8px;font-size:13px;font-weight:600}
-        .loading{text-align:center;font-size:18px;grid-column:span 3;padding:4px;color:var(--text-secondary)}
-        footer{background:#1e293b;color:#94a3b8;padding:30px 20px;text-align:center;margin-top:50px}
-        @media(max-width:768px){.class-grid{grid-template-columns:repeat(4,1fr)}.content-grid{grid-template-columns:repeat(2,1fr)}}
-        @media(max-width:480px){.class-grid{grid-template-columns:repeat(3,1fr)}.content-grid{grid-template-columns:1fr}}
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shin-Chan Learning Hub | Class 1-10 শিক্ষা প্ল্যাটফর্ম</title>
+<meta name="description" content="Class 1-10 এর সব পড়া এক জায়গায়। ভিডিও ক্লাস, নোট, PDF — সম্পূর্ণ ফ্রিতে।">
+<meta name="keywords" content="Class 1-10, ফ্রি নোট, PDF ডাউনলোড, ভিডিও ক্লাস, Shin-Chan Learning Hub, বাংলাদেশ শিক্ষা">
+<meta property="og:title" content="Shin-Chan Learning Hub | Class 1-10 শিক্ষা প্ল্যাটফর্ম">
+<meta property="og:description" content="ভিডিও ক্লাস, নোট, PDF — সব এক জায়গায়, সম্পূর্ণ বিনামূল্যে।">
+<meta property="og:type" content="website">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --primary:#2563eb;--primary-dark:#1d4ed8;--primary-light:#eff6ff;
+  --accent:#f59e0b;
+  --text:#0f172a;--text-secondary:#64748b;--border:#e2e8f0;
+  --bg:#f8fafc;--white:#ffffff;
+  --shadow:0 1px 3px rgba(15,23,42,0.06),0 1px 2px rgba(15,23,42,0.04);
+  --shadow-hover:0 12px 24px -6px rgba(37,99,235,0.18),0 4px 8px -2px rgba(15,23,42,0.06);
+}
+body{font-family:'Hind Siliguri',sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6}
+h1,h2,.brand{font-family:'Manrope','Hind Siliguri',sans-serif}
+
+/* NAV */
+nav{background:rgba(255,255,255,0.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;padding:0 20px}
+.nav-inner{max-width:1140px;margin:0 auto;height:64px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:19px;font-weight:800;color:var(--primary);text-decoration:none;display:flex;align-items:center;gap:8px;letter-spacing:-0.3px}
+.logo span{color:var(--text)}
+.nav-links{display:flex;gap:4px}
+.nav-links a{padding:8px 14px;border-radius:8px;text-decoration:none;font-size:14px;color:var(--text-secondary);font-weight:600;transition:all 0.2s}
+.nav-links a:hover{background:var(--primary-light);color:var(--primary)}
+.nav-social{display:flex;gap:8px}
+.nav-social a{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:var(--primary-light);text-decoration:none;font-size:16px;transition:all .2s}
+.nav-social a:hover{background:var(--primary);transform:translateY(-2px)}
+.hamburger{display:none;background:none;border:none;cursor:pointer;padding:4px;flex-direction:column;gap:5px}
+.hamburger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px}
+.mobile-menu{display:none;flex-direction:column;background:white;border-top:1px solid var(--border);padding:14px 20px}
+.mobile-menu.open{display:flex}
+.mobile-menu a{padding:11px 0;font-size:15px;color:var(--text);text-decoration:none;border-bottom:1px solid var(--border);font-weight:500}
+
+/* HERO */
+.hero{position:relative;background:radial-gradient(120% 120% at 15% 0%,#1e3a8a 0%,#1e40af 35%,#2563eb 65%,#0ea5e9 100%);color:white;padding:64px 20px 56px;text-align:center;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 20%,rgba(253,230,138,0.25),transparent 50%);pointer-events:none}
+.hero-inner{position:relative;max-width:680px;margin:0 auto}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);padding:6px 14px;border-radius:20px;font-size:12.5px;font-weight:600;margin-bottom:18px}
+.hero h1{font-size:36px;font-weight:800;line-height:1.28;margin-bottom:14px;letter-spacing:-0.5px}
+.hero h1 em{font-style:normal;color:#fde68a}
+.hero p{font-size:16px;opacity:0.92;max-width:480px;margin:0 auto 28px}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:24px}
+.btn-white{background:white;color:var(--primary);border:none;padding:13px 26px;border-radius:11px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;transition:all 0.2s;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.btn-white:hover{transform:translateY(-2px);box-shadow:0 10px 20px rgba(0,0,0,0.18)}
+.btn-outline{background:rgba(255,255,255,0.1);color:white;border:1.5px solid rgba(255,255,255,0.5);padding:13px 26px;border-radius:11px;font-size:15px;font-weight:600;cursor:pointer;font-family:inherit;text-decoration:none;transition:all 0.2s;display:inline-flex;align-items:center;gap:6px}
+.btn-outline:hover{background:rgba(255,255,255,0.2);transform:translateY(-2px)}
+.social-bar{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.social-pill{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);color:white;padding:8px 16px;border-radius:20px;text-decoration:none;font-size:13px;font-weight:600;transition:all .2s}
+.social-pill:hover{background:rgba(255,255,255,0.25)}
+
+/* STATS */
+.stats{background:white;border-bottom:1px solid var(--border)}
+.stats-inner{max-width:1140px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr)}
+.stat{padding:22px;text-align:center;border-right:1px solid var(--border)}
+.stat:last-child{border-right:none}
+.stat-n{font-size:26px;font-weight:800;color:var(--primary);font-family:'Manrope',sans-serif}
+.stat-l{font-size:12.5px;color:var(--text-secondary);margin-top:3px;font-weight:500}
+
+.container{max-width:1140px;margin:0 auto;padding:40px 20px}
+
+.sec-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:20px}
+.sec-eyebrow{font-size:12px;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.sec-title{font-size:22px;font-weight:800;letter-spacing:-0.3px}
+.sec-title span{color:var(--primary)}
+
+.search-box{display:flex;gap:10px;margin-bottom:28px;background:white;padding:6px;border-radius:14px;border:1.5px solid var(--border);box-shadow:var(--shadow)}
+.search-box input{flex:1;padding:12px 14px;border:none;border-radius:10px;font-size:14px;font-family:inherit;background:transparent}
+.search-box input:focus{outline:none}
+.search-box button{background:var(--primary);color:white;border:none;padding:0 22px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer}
+
+.class-grid{display:grid;grid-template-columns:repeat(11,1fr);gap:10px;margin-bottom:48px}
+.class-card{background:white;border:1.5px solid var(--border);border-radius:13px;padding:16px 6px;text-align:center;cursor:pointer;transition:all 0.2s}
+.class-card:hover,.class-card.active{border-color:var(--primary);background:var(--primary-light);transform:translateY(-3px);box-shadow:var(--shadow-hover)}
+.class-card.active{background:var(--primary);border-color:var(--primary)}
+.class-card.active .class-num,.class-card.active .class-lbl{color:white}
+.class-num{font-size:21px;font-weight:800;color:var(--primary);font-family:'Manrope',sans-serif}
+.class-lbl{font-size:10.5px;color:var(--text-secondary);margin-top:2px;font-weight:600}
+
+.notice-box{background:linear-gradient(135deg,#fffbeb,#fef3c7);border:1.5px solid #fde68a;border-radius:16px;padding:20px 22px;margin-bottom:36px;display:flex;align-items:flex-start;gap:14px}
+.notice-icon{font-size:22px;margin-top:1px}
+.notice-title{font-size:14px;font-weight:700;color:#92400e;margin-bottom:4px}
+.notice-text{font-size:13px;color:#78350f;line-height:1.6}
+
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.filter-btn{padding:8px 18px;border-radius:22px;border:1.5px solid var(--border);background:white;font-size:13px;cursor:pointer;font-family:inherit;font-weight:600;color:var(--text-secondary);transition:all 0.2s}
+.filter-btn:hover,.filter-btn.active{background:var(--primary);border-color:var(--primary);color:white;box-shadow:0 4px 10px rgba(37,99,235,0.25)}
+
+.content-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:20px}
+.content-card{background:white;border-radius:16px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--border);transition:all 0.25s;display:flex;flex-direction:column}
+.content-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-hover);border-color:#bfdbfe}
+.content-thumb{height:120px;display:flex;align-items:center;justify-content:center;font-size:40px;position:relative}
+.thumb-blue{background:linear-gradient(135deg,#dbeafe,#bfdbfe)}
+.thumb-green{background:linear-gradient(135deg,#dcfce7,#bbf7d0)}
+.thumb-amber{background:linear-gradient(135deg,#fef3c7,#fde68a)}
+.thumb-purple{background:linear-gradient(135deg,#ede9fe,#ddd6fe)}
+.content-badge{position:absolute;top:11px;right:11px;font-size:10.5px;font-weight:700;padding:4px 10px;border-radius:7px}
+.badge-video{background:#fee2e2;color:#dc2626}
+.badge-note{background:#dcfce7;color:#16a34a}
+.badge-pdf{background:#fef3c7;color:#d97706}
+.content-body{padding:16px;flex-grow:1;display:flex;flex-direction:column;gap:10px}
+.content-subject{font-size:11.5px;color:var(--primary);font-weight:700;text-transform:uppercase;letter-spacing:0.4px}
+.content-title{font-size:14.5px;font-weight:700;line-height:1.45;color:var(--text);flex-grow:1}
+.content-class-tag{font-size:11px;background:var(--bg);color:var(--text-secondary);padding:3px 9px;border-radius:6px;font-weight:600;display:inline-block;width:fit-content}
+.content-btn{display:flex;align-items:center;justify-content:center;gap:6px;text-align:center;background:var(--primary);color:white;text-decoration:none;padding:10px;border-radius:9px;font-size:13px;font-weight:700;transition:background .2s;border:none;cursor:pointer;font-family:inherit;width:100%}
+.content-btn:hover{background:var(--primary-dark)}
+.empty-state{text-align:center;padding:50px 20px;color:var(--text-secondary);font-size:14px;grid-column:1/-1;background:white;border-radius:16px;border:1.5px dashed var(--border)}
+
+.subject-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:48px}
+.subject-card{background:white;border-radius:14px;padding:20px;text-align:center;border:1.5px solid var(--border);cursor:pointer;transition:all 0.2s}
+.subject-card:hover{border-color:var(--primary);background:var(--primary-light);transform:translateY(-3px);box-shadow:var(--shadow-hover)}
+.subject-icon{font-size:26px;margin-bottom:8px}
+.subject-name{font-size:14px;font-weight:700}
+.subject-count{font-size:11px;color:var(--text-secondary);margin-top:3px;font-weight:500}
+
+footer{background:#0f172a;color:#94a3b8;padding:44px 20px 22px;margin-top:30px}
+.footer-inner{max-width:1140px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px;margin-bottom:30px}
+.footer-logo{color:#60a5fa;font-size:18px;font-weight:800;text-decoration:none;display:block;margin-bottom:10px}
+.footer-desc{font-size:13px;line-height:1.7;color:#64748b}
+.footer-col h4{font-size:13.5px;font-weight:700;color:#e2e8f0;margin-bottom:14px}
+.footer-col a{display:block;font-size:13px;color:#94a3b8;text-decoration:none;margin-bottom:9px;transition:color 0.2s}
+.footer-col a:hover{color:#60a5fa}
+.footer-bottom{border-top:1px solid #1e293b;padding-top:20px;text-align:center;font-size:13px;color:#475569}
+
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(2,6,23,0.85);z-index:1000;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.open{display:flex}
+.modal-box{background:#000;border-radius:16px;overflow:hidden;max-width:920px;width:100%;position:relative}
+.modal-close{position:absolute;top:12px;right:12px;background:rgba(255,255,255,0.95);border:none;width:36px;height:36px;border-radius:50%;font-size:18px;cursor:pointer;z-index:10}
+.modal-box iframe{width:100%;height:60vh;border:none;display:block}
+
+.skel{background:white;border-radius:16px;height:230px;border:1px solid var(--border);position:relative;overflow:hidden}
+.skel::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(0,0,0,0.04),transparent);animation:shimmer 1.4s infinite}
+@keyframes shimmer{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+
+@media(max-width:768px){
+  .hamburger{display:flex}
+  .nav-links,.nav-social{display:none}
+  .hero h1{font-size:25px}
+  .stats-inner{grid-template-columns:repeat(2,1fr)}
+  .stat:nth-child(2){border-right:none}
+  .stat:nth-child(3){border-top:1px solid var(--border)}
+  .class-grid{grid-template-columns:repeat(4,1fr);gap:8px}
+  .class-card{padding:13px 6px}
+  .class-num{font-size:18px}
+  .content-grid{grid-template-columns:repeat(2,1fr)}
+  .subject-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-top{grid-template-columns:1fr 1fr}
+  .modal-box iframe{height:40vh}
+}
+@media(max-width:480px){
+  .content-grid{grid-template-columns:1fr}
+  .class-grid{grid-template-columns:repeat(3,1fr)}
+  .hero h1{font-size:22px}
+}
+</style>
 </head>
 <body>
 
 <nav>
-    <div class="nav-inner">
-        <a href="#" class="logo">📚 Shin-Chan Hub</a>
-        <div class="nav-links">
-            <a href="#" class="active">হোম</a>
-            <a href="https://t.me/shinchanlearningacademy" target="_blank">টেলিগ্রাম</a>
-        </div>
+  <div class="nav-inner">
+    <a href="#" class="logo">📚 <span>Shin-Chan Learning Hub</span></a>
+    <div class="nav-links">
+      <a href="#" >হোম</a>
+      <a href="#classes">ক্লাস</a>
+      <a href="#subjects">বিষয়</a>
+      <a href="#contents">সব কন্টেন্ট</a>
     </div>
+    <div class="nav-social">
+      <a href="https://www.facebook.com/share/1EYV1iDTXg/" target="_blank" rel="noopener" title="Facebook">📘</a>
+      <a href="https://t.me/shinchanlearningacademy" target="_blank" rel="noopener" title="Telegram">✈️</a>
+    </div>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="মেনু">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#">🏠 হোম</a>
+    <a href="#classes">📖 ক্লাস</a>
+    <a href="#subjects">📚 বিষয়</a>
+    <a href="#contents">📝 সব কন্টেন্ট</a>
+    <a href="https://www.facebook.com/share/1EYV1iDTXg/" target="_blank">📘 Facebook</a>
+    <a href="https://t.me/shinchanlearningacademy" target="_blank">✈️ Telegram</a>
+  </div>
 </nav>
 
 <section class="hero">
-    <h1>Shin-Chan Learning Hub</h1>
-    <p>গুগল শিট দ্বারা চালিত সম্পূর্ণ অটোমেটিক লাইভ লার্নিং পোর্টাল</p>
+  <div class="hero-inner">
+    <div class="hero-badge">✨ ১০০% ফ্রি · সবসময় আপডেট</div>
+    <h1>Class 1–10 এর সব পড়া<br><em>এক জায়গায়, ফ্রিতে</em></h1>
+    <p>ভিডিও ক্লাস, নোট, PDF — সব এক জায়গায়, সম্পূর্ণ বিনামূল্যে।</p>
+    <div class="hero-btns">
+      <a href="javascript:void(0)" class="btn-white" onclick="document.getElementById('classes').scrollIntoView({behavior:'smooth'})">📖 ক্লাস বেছে নাও</a>
+      <a href="javascript:void(0)" class="btn-outline" onclick="document.getElementById('contents').scrollIntoView({behavior:'smooth'})">📝 সব কন্টেন্ট দেখো</a>
+    </div>
+    <div class="social-bar">
+      <a class="social-pill" href="https://www.facebook.com/share/1EYV1iDTXg/" target="_blank" rel="noopener">📘 Facebook Page</a>
+      <a class="social-pill" href="https://t.me/shinchanlearningacademy" target="_blank" rel="noopener">✈️ Telegram চ্যানেল</a>
+    </div>
+  </div>
 </section>
 
-<div class="container">
-    <div id="classes">
-        <div class="sec-header"><h2 class="sec-title">📖 <span>клас</span> অনুযায়ী ফিল্টার করুন</h2></div>
-        <div class="class-grid">
-            <div class="class-card active" onclick="filterClass('all', this)"><div class="class-num">সব</div></div>
-            <div class="class-card" onclick="filterClass('1', this)"><div class="class-num">১</div><div class="class-lbl">Class 1</div></div>
-            <div class="class-card" onclick="filterClass('2', this)"><div class="class-num">২</div><div class="class-lbl">Class 2</div></div>
-            <div class="class-card" onclick="filterClass('3', this)"><div class="class-num">৩</div><div class="class-lbl">Class 3</div></div>
-            <div class="class-card" onclick="filterClass('4', this)"><div class="class-num">৪</div><div class="class-lbl">Class 4</div></div>
-            <div class="class-card" onclick="filterClass('5', this)"><div class="class-num">৫</div><div class="class-lbl">Class 5</div></div>
-            <div class="class-card" onclick="filterClass('6', this)"><div class="class-num">৬</div><div class="class-lbl">Class 6</div></div>
-            <div class="class-card" onclick="filterClass('7', this)"><div class="class-num">৭</div><div class="class-lbl">Class 7</div></div>
-            <div class="class-card" onclick="filterClass('8', this)"><div class="class-num">৮</div><div class="class-lbl">Class 8</div></div>
-            <div class="class-card" onclick="filterClass('9', this)"><div class="class-num">৯</div><div class="class-lbl">Class 9</div></div>
-            <div class="class-card" onclick="filterClass('10', this)"><div class="class-num">১০</div><div class="class-lbl">Class 10</div></div>
-        </div>
-    </div>
+<div class="stats">
+  <div class="stats-inner">
+    <div class="stat"><div class="stat-n">১০</div><div class="stat-l">ক্লাস</div></div>
+    <div class="stat"><div class="stat-n" id="subjectCount">০</div><div class="stat-l">বিষয়</div></div>
+    <div class="stat"><div class="stat-n" id="contentCount">০</div><div class="stat-l">কন্টেন্ট</div></div>
+    <div class="stat"><div class="stat-n">ফ্রি</div><div class="stat-l">সবসময়</div></div>
+  </div>
+</div>
 
-    <div id="contents">
-        <div class="sec-header"><h2 class="sec-title">🔥 <span>লাইভ</span> কন্টেন্ট সমূহ</h2></div>
-        <div class="filters">
-            <button class="filter-btn active" onclick="filterType('all', this)">সব কন্টেন্ট</button>
-            <button class="filter-btn" onclick="filterType('video', this)">🎥 ভিডিও ক্লাস</button>
-            <button class="filter-btn" onclick="filterType('pdf', this)">📄 PDF ও নোট</button>
-        </div>
-        
-        <div class="content-grid" id="contentGrid">
-            <div class="loading" id="loadingText">গুগল শিট থেকে কন্টেন্ট লোড হচ্ছে... একটু অপেক্ষা করো...</div>
-        </div>
+<div class="container">
+
+  <div class="notice-box">
+    <div class="notice-icon">📢</div>
+    <div>
+      <div class="notice-title">গুরুত্বপূর্ণ বিজ্ঞপ্তি</div>
+      <div class="notice-text">পরীক্ষা কাছে আসছে! গণিত ও বিজ্ঞানের উপর বেশি মনোযোগ দাও। প্রতিদিন নতুন নোট ও ভিডিও যোগ হচ্ছে — আপডেট পেতে আমাদের Telegram চ্যানেলে জয়েন করো।</div>
     </div>
+  </div>
+
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="যা খুঁজছো লেখো — যেমন: ভগ্নাংশ, Tense, মুক্তিযুদ্ধ...">
+    <button onclick="document.getElementById('searchInput').focus()">🔍 খোঁজো</button>
+  </div>
+
+  <div id="classes">
+    <div class="sec-header">
+      <div>
+        <div class="sec-eyebrow">ক্লাস বেছে নাও</div>
+        <h2 class="sec-title">📚 <span>ক্লাস</span> অনুযায়ী ফিল্টার</h2>
+      </div>
+    </div>
+    <div class="class-grid" id="classGrid"></div>
+  </div>
+
+  <div id="contents">
+    <div class="sec-header">
+      <div>
+        <div class="sec-eyebrow">লাইভ আপডেট</div>
+        <h2 class="sec-title">🔥 <span>সব</span> কন্টেন্ট</h2>
+      </div>
+    </div>
+    <div class="filters">
+      <button class="filter-btn active" data-type="all" onclick="setFilter(this,'all')">সব</button>
+      <button class="filter-btn" data-type="video" onclick="setFilter(this,'video')">🎥 ভিডিও</button>
+      <button class="filter-btn" data-type="note" onclick="setFilter(this,'note')">📝 নোট</button>
+      <button class="filter-btn" data-type="pdf" onclick="setFilter(this,'pdf')">📄 PDF</button>
+    </div>
+    <div class="content-grid" id="contentGrid">
+      <div class="skel"></div><div class="skel"></div><div class="skel"></div>
+    </div>
+  </div>
+
+  <div id="subjects">
+    <div class="sec-header">
+      <div>
+        <div class="sec-eyebrow">বিষয় ভিত্তিক</div>
+        <h2 class="sec-title">📖 <span>বিষয়</span> অনুযায়ী পড়ো</h2>
+      </div>
+    </div>
+    <div class="subject-grid" id="subjectGrid"></div>
+  </div>
+
+</div>
+
+<div class="modal-overlay" id="videoModal" onclick="if(event.target===this)closeModal()">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <iframe id="videoFrame" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  </div>
 </div>
 
 <footer>
-    <p>© ২০২৬ Shin-Chan Learning Hub | স্টুডেন্টদের জন্য একটি অটোমেটিক ফ্রি প্ল্যাটফর্ম</p>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <a href="#" class="footer-logo">📚 Shin-Chan Learning Hub</a>
+        <p class="footer-desc">Class 1-10 এর শিক্ষার্থীদের জন্য বাংলাদেশের অন্যতম সেরা ফ্রি শিক্ষা প্ল্যাটফর্ম।</p>
+      </div>
+      <div class="footer-col">
+        <h4>ক্লাস</h4>
+        <a href="#classes">Class 1-5</a>
+        <a href="#classes">Class 6-8</a>
+        <a href="#classes">Class 9-10</a>
+      </div>
+      <div class="footer-col">
+        <h4>কন্টেন্ট</h4>
+        <a href="#contents">ভিডিও ক্লাস</a>
+        <a href="#contents">নোট ও PDF</a>
+      </div>
+      <div class="footer-col">
+        <h4>যোগাযোগ</h4>
+        <a href="https://www.facebook.com/share/1EYV1iDTXg/" target="_blank" rel="noopener">Facebook Page</a>
+        <a href="https://t.me/shinchanlearningacademy" target="_blank" rel="noopener">Telegram চ্যানেল</a>
+      </div>
+    </div>
+    <div class="footer-bottom">© ২০২৬ Shin-Chan Learning Hub | সর্বস্বত্ব সংরক্ষিত</div>
+  </div>
 </footer>
 
 <script>
-// আপনার শিট আইডি এখানে ১০০% সঠিক উপায়ে বসানো হয়েছে
+/* =========================================================
+   GOOGLE SHEET থেকে ডাটা লোড হয় — কোনো কোড এডিট করা লাগে না।
+   নতুন content যোগ করতে শুধু Google Sheet-এ নতুন রো বসাও।
+   Sheet column order: Title | Subject | Class | Type | Link
+   ========================================================= */
 const SHEET_ID = '18zWcpnwm7RRteESnYOXy9mAzLZF_PM3tLIgRF-oWeT4';
-const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json`;
+const GID = '0';
+const CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=${GID}`;
 
-let allContents = [];
-let currentClass = 'all';
-let currentType = 'all';
+const subjectIcons = {"গণিত":"🔢","বাংলা":"📖","English":"🌍","বিজ্ঞান":"🔬","পদার্থ":"⚡","রসায়ন":"🧪","জীববিজ্ঞান":"🌱","ভূগোল":"🗺️","ইতিহাস":"🏛️"};
+const thumbClasses = ["thumb-blue","thumb-green","thumb-amber","thumb-purple"];
+const badgeMap = {video:{cls:"badge-video",label:"ভিডিও",icon:"🎥"}, note:{cls:"badge-note",label:"নোট",icon:"📝"}, pdf:{cls:"badge-pdf",label:"PDF",icon:"📄"}};
 
-async function fetchSheetData() {
-    try {
-        const response = await fetch(SHEET_URL);
-        const text = await response.text();
-        
-        // ক্লিন ডাটা এক্সট্রাক্ট করার সিকিউর মেকানিজম
-        const startIdx = text.indexOf('{');
-        const endIdx = text.lastIndexOf('}') + 1;
-        if(startIdx === -1 || endIdx === -1) throw new Error("Invalid JSON");
-        
-        const jsonStr = text.substring(startIdx, endIdx);
-        const jsonData = JSON.parse(jsonStr);
-        const rows = jsonData.table.rows;
-        
-        allContents = rows.map(row => {
-            if (!row.c || row.c.length < 5) return null;
-            return {
-                title: row.c[0] ? String(row.c[0].v || row.c[0].f || '') : '',
-                subject: row.c[1] ? String(row.c[1].v || row.c[1].f || '') : '',
-                cls: row.c[2] ? String(row.c[2].v || row.c[2].f || '') : '',
-                type: row.c[3] ? String(row.c[3].v || row.c[3].f || '').toLowerCase().trim() : '',
-                link: row.c[4] ? String(row.c[4].v || row.c[4].f || '#') : '#'
-            };
-        }).filter(item => item !== null && item.title !== 'title'); // হেডার বাদ দেওয়ার জন্য
+let allContent = [];
+let activeFilter = "all";
+let activeClass = null;
 
-        document.getElementById('loadingText').style.display = 'none';
-        displayContents();
-    } catch (error) {
-        console.error('Error fetching data:', error);
-        document.getElementById('loadingText').innerText = 'ডাটা লোড করতে সমস্যা হয়েছে! শিটের Share অপশনে গিয়ে Anyone with the link (Viewer) এবং Publish to Web করা আছে কিনা নিশ্চিত করো।';
+function toggleMenu(){ document.getElementById('mobileMenu').classList.toggle('open'); }
+
+/* ---------- CSV পার্সার (কমার মধ্যে কমা/quote সামলায়) ---------- */
+function parseCSV(text){
+  const rows = [];
+  let row = [""], inQuotes = false;
+  for(let i=0;i<text.length;i++){
+    const c = text[i], next = text[i+1];
+    if(c === '"'){
+      if(inQuotes && next === '"'){ row[row.length-1] += '"'; i++; }
+      else inQuotes = !inQuotes;
+    } else if(c === ',' && !inQuotes){
+      row.push('');
+    } else if((c === '\r' || c === '\n') && !inQuotes){
+      if(c === '\r' && next === '\n') i++;
+      rows.push(row); row = [''];
+    } else {
+      row[row.length-1] += c;
     }
+  }
+  if(row.length > 1 || row[0] !== '') rows.push(row);
+  return rows;
 }
 
-function displayContents() {
-    const grid = document.getElementById('contentGrid');
-    grid.innerHTML = '';
-
-    let hasData = false;
-
-    for (let i = 0; i < allContents.length; i++) {
-        const item = allContents[i];
-        if(!item.title) continue;
-        
-        const classMatch = (currentClass === 'all' || item.cls === currentClass);
-        const typeMatch = (currentType === 'all' || item.type === currentType);
-
-        if (classMatch && typeMatch) {
-            hasData = true;
-            const card = document.createElement('div');
-            card.className = 'content-card';
-            
-            const isVideo = item.type === 'video';
-            const thumbClass = isVideo ? 'thumb-video' : 'thumb-pdf';
-            const badgeClass = isVideo ? 'badge-video' : 'badge-pdf';
-            const badgeText = isVideo ? 'ভিডিও' : 'PDF';
-            const icon = isVideo ? '🎥' : '📄';
-            const btnText = isVideo ? '📺 ভিডিওটি দেখো' : '📥 ড্রাইভ থেকে ডাউনলোড';
-
-            card.innerHTML = `
-                <div class="content-thumb ${thumbClass}"><span>${icon}</span><span class="content-badge ${badgeClass}">${badgeText}</span></div>
-                <div class="content-body">
-                    <div>
-                        <div class="content-subject">${item.subject} | Class ${item.cls}</div>
-                        <div class="content-title">${item.title}</div>
-                    </div>
-                    <a href="${item.link}" target="_blank" class="content-btn">${btnText}</a>
-                </div>
-            `;
-            grid.appendChild(card);
-        }
-    }
-
-    if (!hasData) {
-        grid.innerHTML = '<div class="loading">এই ক্যাটাগরিতে কোনো কন্টেন্ট নেই!</div>';
-    }
+/* Drive লিংক হোক বা শুধু ID — দুটোই থেকে ID বের করে */
+function extractDriveId(value){
+  if(!value) return '';
+  const match = value.match(/\/d\/([a-zA-Z0-9_-]{10,})/);
+  if(match) return match[1];
+  return value.trim();
+}
+/* YouTube লিংক হোক বা শুধু ID — দুটো থেকেই ID বের করে */
+function extractYoutubeId(value){
+  if(!value) return '';
+  let m = value.match(/(?:youtu\.be\/|v=|embed\/)([a-zA-Z0-9_-]{6,})/);
+  if(m) return m[1];
+  return value.trim();
 }
 
-function filterClass(cls, element) {
-    document.querySelectorAll('.class-card').forEach(card => card.classList.remove('active'));
-    element.classList.add('active');
-    currentClass = cls;
-    displayContents();
+async function loadSheetData(){
+  try{
+    const res = await fetch(CSV_URL);
+    if(!res.ok) throw new Error('fetch failed');
+    const text = await res.text();
+    const rows = parseCSV(text);
+    allContent = rows.slice(1).map(r=>{
+      if(!r[0] || !r[0].trim()) return null;
+      const type = (r[3] || '').toLowerCase().trim();
+      const rawLink = r[4] || '';
+      return {
+        title: (r[0]||'').trim(),
+        subject: (r[1]||'').trim(),
+        class: parseInt((r[2]||'0').trim(), 10),
+        type: type,
+        youtubeId: type === 'video' ? extractYoutubeId(rawLink) : '',
+        driveId: type !== 'video' ? extractDriveId(rawLink) : ''
+      };
+    }).filter(Boolean);
+    renderAll();
+  }catch(err){
+    document.getElementById('contentGrid').innerHTML =
+      `<div class="empty-state">⚠️ কন্টেন্ট লোড করতে সমস্যা হয়েছে।<br>Google Sheet-টি "Anyone with the link – Viewer" হিসেবে Share করা আছে কিনা চেক করো।</div>`;
+  }
 }
 
-function filterType(type, element) {
-    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-    element.classList.add('active');
-    currentType = type;
-    displayContents();
+function setFilter(btn, type){
+  activeFilter = type;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderContent();
 }
 
-window.onload = fetchSheetData;
+function setClassFilter(c){
+  activeClass = (activeClass === c) ? null : c;
+  renderClasses();
+  renderContent();
+  document.getElementById('contents').scrollIntoView({behavior:'smooth'});
+}
+
+function renderClasses(){
+  const grid = document.getElementById('classGrid');
+  grid.innerHTML = "";
+  const bn = ["০","১","২","৩","৪","৫","৬","৭","৮","৯","১০"];
+  const allBtn = document.createElement('div');
+  allBtn.className = "class-card" + (activeClass===null ? " active" : "");
+  allBtn.onclick = ()=>{ activeClass=null; renderClasses(); renderContent(); };
+  allBtn.innerHTML = `<div class="class-num">সব</div>`;
+  grid.appendChild(allBtn);
+  for(let i=1;i<=10;i++){
+    const div = document.createElement('div');
+    div.className = "class-card" + (activeClass===i ? " active" : "");
+    div.onclick = ()=>setClassFilter(i);
+    div.innerHTML = `<div class="class-num">${bn[i]}</div><div class="class-lbl">Class</div>`;
+    grid.appendChild(div);
+  }
+}
+
+function renderSubjects(){
+  const grid = document.getElementById('subjectGrid');
+  grid.innerHTML = "";
+  const subjects = [...new Set(allContent.map(c=>c.subject).filter(Boolean))];
+  document.getElementById('subjectCount').textContent = subjects.length || "০";
+  subjects.forEach(s=>{
+    const count = allContent.filter(c=>c.subject===s).length;
+    const card = document.createElement('div');
+    card.className = "subject-card";
+    card.onclick = ()=>{ document.getElementById('searchInput').value = s; renderContent(); document.getElementById('contents').scrollIntoView({behavior:'smooth'}); };
+    card.innerHTML = `<div class="subject-icon">${subjectIcons[s] || "📘"}</div><div class="subject-name">${s}</div><div class="subject-count">${count} টি কন্টেন্ট</div>`;
+    grid.appendChild(card);
+  });
+}
+
+function openVideo(id){
+  if(!id){ alert("এই ভিডিওর লিংক এখনো ঠিকভাবে যোগ করা হয়নি।"); return; }
+  document.getElementById('videoFrame').src = `https://www.youtube.com/embed/${id}?autoplay=1`;
+  document.getElementById('videoModal').classList.add('open');
+}
+function closeModal(){
+  document.getElementById('videoModal').classList.remove('open');
+  document.getElementById('videoFrame').src = "";
+}
+
+function renderContent(){
+  const grid = document.getElementById('contentGrid');
+  const query = document.getElementById('searchInput').value.trim().toLowerCase();
+  let items = allContent.filter(c=>{
+    const matchType = activeFilter==='all' || c.type===activeFilter;
+    const matchClass = activeClass===null || c.class===activeClass;
+    const matchSearch = !query || c.title.toLowerCase().includes(query) || c.subject.toLowerCase().includes(query);
+    return matchType && matchClass && matchSearch;
+  });
+  document.getElementById('contentCount').textContent = allContent.length;
+  grid.innerHTML = "";
+  if(items.length===0){
+    grid.innerHTML = `<div class="empty-state">😕 কোনো কন্টেন্ট পাওয়া যায়নি।<br>শীঘ্রই নতুন কন্টেন্ট যোগ হবে — Telegram চ্যানেলে জয়েন থাকো।</div>`;
+    return;
+  }
+  items.forEach((c,i)=>{
+    const badge = badgeMap[c.type] || badgeMap.note;
+    const thumb = thumbClasses[i % thumbClasses.length];
+    const card = document.createElement('div');
+    card.className = "content-card";
+    const isVideo = c.type === 'video';
+    const btnLabel = isVideo ? '📺 ভিডিওটি দেখো' : '📥 ড্রাইভ থেকে দেখো';
+    card.innerHTML = `
+      <div class="content-thumb ${thumb}"><span>${badge.icon}</span><span class="content-badge ${badge.cls}">${badge.label}</span></div>
+      <div class="content-body">
+        <div class="content-subject">${c.subject || 'সাধারণ'}</div>
+        <div class="content-title">${c.title}</div>
+        <div class="content-class-tag">Class ${c.class || '—'}</div>
+        <button class="content-btn">${btnLabel}</button>
+      </div>`;
+    card.querySelector('.content-btn').onclick = ()=>{
+      if(isVideo) openVideo(c.youtubeId);
+      else {
+        if(!c.driveId){ alert("এই ফাইলটি এখনো ঠিকভাবে যোগ করা হয়নি।"); return; }
+        window.open(`https://drive.google.com/file/d/${c.driveId}/preview`, '_blank');
+      }
+    };
+    grid.appendChild(card);
+  });
+}
+
+function renderAll(){
+  renderClasses();
+  renderSubjects();
+  renderContent();
+}
+
+document.getElementById('searchInput').addEventListener('input', renderContent);
+loadSheetData();
 </script>
 </body>
 </html>
