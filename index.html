@@ -688,9 +688,8 @@ function renderContent(){
     const badge = badgeMap[c.type]||badgeMap.note;
     const isVideo = c.type==='video';
     const newBadge = isNew(c.dateStr);
-    const shareUrl = c.type==='video'
-      ? `https://youtu.be/${c.youtubeId}`
-      : `https://drive.google.com/file/d/${c.driveId}/view`;
+    const siteBase = 'https://shinchan-learning.github.io/shinchan-learning-hub/';
+    const shareUrl = `${siteBase}?q=${encodeURIComponent(c.title)}`;
 
     if(isVideo){
       const card = document.createElement('div');
@@ -762,6 +761,16 @@ document.addEventListener('click',e=>{
 });
 
 loadSheetData();
+
+/* ---- URL থেকে auto-search ---- */
+window.addEventListener('load', ()=>{
+  const params = new URLSearchParams(window.location.search);
+  const q = params.get('q');
+  if(q){
+    document.getElementById('searchInput').value = q;
+    // sheet load হওয়ার পর search হবে — renderAll()-এর মধ্যে renderContent() call হয়
+  }
+});
 </script>
 </body>
 </html>
