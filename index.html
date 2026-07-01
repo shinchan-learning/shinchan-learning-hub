@@ -14,23 +14,22 @@
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
   --primary:#2563eb;--primary-dark:#1d4ed8;--primary-light:#eff6ff;
-  --accent:#f59e0b;
   --text:#0f172a;--text-secondary:#64748b;--border:#e2e8f0;
   --bg:#f8fafc;--white:#ffffff;
   --shadow:0 1px 3px rgba(15,23,42,0.06),0 1px 2px rgba(15,23,42,0.04);
   --shadow-hover:0 12px 24px -6px rgba(37,99,235,0.18),0 4px 8px -2px rgba(15,23,42,0.06);
 }
 body{font-family:'Hind Siliguri',sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6}
-h1,h2,.brand{font-family:'Manrope','Hind Siliguri',sans-serif}
+h1,h2{font-family:'Manrope','Hind Siliguri',sans-serif}
 
 /* NAV */
-nav{background:rgba(255,255,255,0.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;padding:0 20px}
+nav{background:rgba(255,255,255,0.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;padding:0 20px}
 .nav-inner{max-width:1140px;margin:0 auto;height:64px;display:flex;align-items:center;justify-content:space-between}
-.logo{font-size:19px;font-weight:800;color:var(--primary);text-decoration:none;display:flex;align-items:center;gap:8px;letter-spacing:-0.3px}
-.logo-img{width:32px;height:32px;border-radius:8px;object-fit:cover;flex-shrink:0}
+.logo{font-size:18px;font-weight:800;color:var(--primary);text-decoration:none;display:flex;align-items:center;gap:8px}
+.logo-img{width:34px;height:34px;border-radius:9px;object-fit:cover;flex-shrink:0}
 .logo span{color:var(--text)}
 .nav-links{display:flex;gap:4px}
-.nav-links a{padding:8px 14px;border-radius:8px;text-decoration:none;font-size:14px;color:var(--text-secondary);font-weight:600;transition:all 0.2s}
+.nav-links a{padding:8px 13px;border-radius:8px;text-decoration:none;font-size:14px;color:var(--text-secondary);font-weight:600;transition:all 0.2s}
 .nav-links a:hover{background:var(--primary-light);color:var(--primary)}
 .nav-social{display:flex;gap:8px}
 .nav-social a{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:var(--primary-light);text-decoration:none;font-size:16px;transition:all .2s}
@@ -43,7 +42,7 @@ nav{background:rgba(255,255,255,0.85);backdrop-filter:blur(10px);border-bottom:1
 
 /* HERO */
 .hero{position:relative;background:radial-gradient(120% 120% at 15% 0%,#1e3a8a 0%,#1e40af 35%,#2563eb 65%,#0ea5e9 100%);color:white;padding:64px 20px 56px;text-align:center;overflow:hidden}
-.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 20%,rgba(253,230,138,0.25),transparent 50%);pointer-events:none}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 20%,rgba(253,230,138,0.22),transparent 50%);pointer-events:none}
 .hero-inner{position:relative;max-width:680px;margin:0 auto}
 .hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);padding:6px 14px;border-radius:20px;font-size:12.5px;font-weight:600;margin-bottom:18px}
 .hero h1{font-size:36px;font-weight:800;line-height:1.28;margin-bottom:14px;letter-spacing:-0.5px}
@@ -67,27 +66,25 @@ nav{background:rgba(255,255,255,0.85);backdrop-filter:blur(10px);border-bottom:1
 .stat-l{font-size:12.5px;color:var(--text-secondary);margin-top:3px;font-weight:500}
 
 .container{max-width:1140px;margin:0 auto;padding:40px 20px}
-
 .sec-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:20px}
 .sec-eyebrow{font-size:12px;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
 .sec-title{font-size:22px;font-weight:800;letter-spacing:-0.3px}
 .sec-title span{color:var(--primary)}
 
+/* SEARCH */
 .search-box{position:relative;display:flex;gap:10px;margin-bottom:8px;background:white;padding:6px;border-radius:14px;border:1.5px solid var(--border);box-shadow:var(--shadow)}
 .search-box input{flex:1;padding:12px 14px;border:none;border-radius:10px;font-size:14px;font-family:inherit;background:transparent}
 .search-box input:focus{outline:none}
-.search-box button{background:var(--primary);color:white;border:none;padding:0 22px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer}
+.search-box button{background:var(--primary);color:white;border:none;padding:0 22px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit}
 .search-suggest{position:absolute;top:calc(100% + 6px);left:0;right:0;background:white;border:1.5px solid var(--border);border-radius:14px;box-shadow:var(--shadow-hover);z-index:50;overflow:hidden;display:none}
 .search-suggest.open{display:block}
 .search-suggest-item{padding:11px 16px;font-size:13.5px;cursor:pointer;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border)}
 .search-suggest-item:last-child{border-bottom:none}
 .search-suggest-item:hover{background:var(--primary-light)}
-.search-suggest-icon{font-size:15px;flex-shrink:0}
-.search-suggest-text{flex:1}
-.search-suggest-text b{color:var(--primary)}
 .search-suggest-tag{font-size:10.5px;color:var(--text-secondary);background:var(--bg);padding:2px 8px;border-radius:6px;flex-shrink:0}
 .search-hint{font-size:12px;color:var(--text-secondary);margin-bottom:24px;padding-left:4px}
 
+/* CLASS GRID */
 .class-grid{display:grid;grid-template-columns:repeat(11,1fr);gap:10px;margin-bottom:48px}
 .class-card{background:white;border:1.5px solid var(--border);border-radius:13px;padding:16px 6px;text-align:center;cursor:pointer;transition:all 0.2s}
 .class-card:hover,.class-card.active{border-color:var(--primary);background:var(--primary-light);transform:translateY(-3px);box-shadow:var(--shadow-hover)}
@@ -96,34 +93,29 @@ nav{background:rgba(255,255,255,0.85);backdrop-filter:blur(10px);border-bottom:1
 .class-num{font-size:21px;font-weight:800;color:var(--primary);font-family:'Manrope',sans-serif}
 .class-lbl{font-size:10.5px;color:var(--text-secondary);margin-top:2px;font-weight:600}
 
+/* NOTICE */
 .notice-box{background:linear-gradient(135deg,#fffbeb,#fef3c7);border:1.5px solid #fde68a;border-radius:16px;padding:20px 22px;margin-bottom:36px;display:flex;align-items:flex-start;gap:14px}
 .notice-icon{font-size:22px;margin-top:1px}
 .notice-title{font-size:14px;font-weight:700;color:#92400e;margin-bottom:4px}
 .notice-text{font-size:13px;color:#78350f;line-height:1.6}
 
-/* FOLDER GRID SYSTEMS */
-.folder-grid {display:grid; grid-template-columns:repeat(4, 1fr); gap:20px; margin-bottom:36px}
-.folder-card {background:white; border:1.5px solid var(--border); border-radius:18px; padding:24px; display:flex; align-items:center; gap:18px; cursor:pointer; transition:all 0.25s; box-shadow:var(--shadow)}
-.folder-card:hover {transform:translateY(-4px); border-color:var(--primary); box-shadow:var(--shadow-hover)}
-.folder-card.active {background:var(--primary-light); border-color:var(--primary); box-shadow:var(--shadow-hover)}
-.folder-icon-wrapper {width:54px; height:54px; border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:28px; flex-shrink:0}
-.folder-f-video {background:#fee2e2}
-.folder-f-note {background:#dcfce7}
-.folder-f-pdf {background:#fef3c7}
-.folder-info {display:flex; flex-direction:column}
-.folder-name {font-size:16px; font-weight:800; color:var(--text)}
-.folder-count {font-size:12.5px; color:var(--text-secondary); font-weight:600; margin-top:2px}
+/* FOLDER */
+.folder-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-bottom:36px}
+.folder-card{background:white;border:1.5px solid var(--border);border-radius:18px;padding:24px;display:flex;align-items:center;gap:18px;cursor:pointer;transition:all 0.25s;box-shadow:var(--shadow)}
+.folder-card:hover,.folder-card.active{transform:translateY(-4px);border-color:var(--primary);box-shadow:var(--shadow-hover)}
+.folder-card.active{background:var(--primary-light)}
+.folder-icon-wrapper{width:54px;height:54px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0}
+.folder-f-video{background:#fee2e2}
+.folder-f-note{background:#dcfce7}
+.folder-f-pdf{background:#fef3c7}
+.folder-info{display:flex;flex-direction:column}
+.folder-name{font-size:16px;font-weight:800;color:var(--text)}
+.folder-count{font-size:12.5px;color:var(--text-secondary);font-weight:600;margin-top:2px}
 
-.filters{display:none;gap:8px;flex-wrap:wrap;margin-bottom:20px}
-.filter-btn{padding:8px 18px;border-radius:22px;border:1.5px solid var(--border);background:white;font-size:13px;cursor:pointer;font-family:inherit;font-weight:600;color:var(--text-secondary);transition:all 0.2s}
-.filter-btn:hover,.filter-btn.active{background:var(--primary);border-color:var(--primary);color:white;box-shadow:0 4px 10px rgba(37,99,235,0.25)}
-
-/* CONTENT LAYOUTS */
+/* CONTENT */
 .content-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:20px}
-.content-list{display:flex;flex-direction:column;gap:12px;margin-bottom:20px;grid-column: 1 / -1; width:100%}
-
-/* CARD LAYOUTS (FOR VIDEO) */
-.content-card{background:white;border-radius:16px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--border);transition:all 0.25s;display:flex;flex-direction:column}
+.content-list{display:flex;flex-direction:column;gap:12px;margin-bottom:20px;grid-column:1/-1;width:100%}
+.content-card{background:white;border-radius:16px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--border);transition:all 0.25s;display:flex;flex-direction:column;position:relative}
 .content-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-hover);border-color:#bfdbfe}
 .content-thumb{height:120px;display:flex;align-items:center;justify-content:center;font-size:40px;position:relative}
 .thumb-blue{background:linear-gradient(135deg,#dbeafe,#bfdbfe)}
@@ -134,26 +126,47 @@ nav{background:rgba(255,255,255,0.85);backdrop-filter:blur(10px);border-bottom:1
 .badge-video{background:#fee2e2;color:#dc2626}
 .badge-note{background:#dcfce7;color:#16a34a}
 .badge-pdf{background:#fef3c7;color:#d97706}
+.new-badge{position:absolute;top:11px;left:11px;background:#ef4444;color:white;font-size:10px;font-weight:800;padding:3px 8px;border-radius:6px;letter-spacing:0.5px}
 .content-body{padding:16px;flex-grow:1;display:flex;flex-direction:column;gap:10px}
 .content-subject{font-size:11.5px;color:var(--primary);font-weight:700;text-transform:uppercase;letter-spacing:0.4px}
 .content-title{font-size:14.5px;font-weight:700;line-height:1.45;color:var(--text);flex-grow:1}
-.content-class-tag{font-size:11px;background:var(--bg);color:var(--text-secondary);padding:3px 9px;border-radius:6px;font-weight:600;display:inline-block;width:fit-content}
-.content-btn{display:flex;align-items:center;justify-content:center;gap:6px;text-align:center;background:var(--primary);color:white;text-decoration:none;padding:10px;border-radius:9px;font-size:13px;font-weight:700;transition:background .2s;border:none;cursor:pointer;font-family:inherit;width:100%}
+.content-class-tag{font-size:11px;background:var(--bg);color:var(--text-secondary);padding:3px 9px;border-radius:6px;font-weight:600;display:inline-block}
+.content-btn-row{display:flex;gap:8px}
+.content-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;background:var(--primary);color:white;text-decoration:none;padding:10px;border-radius:9px;font-size:13px;font-weight:700;transition:background .2s;border:none;cursor:pointer;font-family:inherit}
 .content-btn:hover{background:var(--primary-dark)}
+.share-btn{width:40px;background:var(--bg);color:var(--text-secondary);border:1.5px solid var(--border);border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;transition:all .2s;flex-shrink:0}
+.share-btn:hover{background:var(--primary-light);color:var(--primary)}
 
-/* LIST LAYOUTS (FOR NOTES & PDF) */
-.content-list-row {background:white; border-radius:12px; border:1px solid var(--border); padding:12px 16px; display:flex; align-items:center; justify-content:space-between; gap:16px; box-shadow:var(--shadow); transition:all 0.2s}
-.content-list-row:hover {border-color:var(--primary); transform:translateX(4px); box-shadow:var(--shadow-hover)}
-.list-left {display:flex; align-items:center; gap:14px; flex:1}
-.list-icon {font-size:24px; width:44px; height:44px; border-radius:10px; display:flex; align-items:center; justify-content:center; flex-shrink:0}
-.list-details {display:flex; flex-direction:column; gap:2px}
-.list-meta {display:flex; align-items:center; gap:8px; flex-wrap:wrap}
-.list-title {font-size:14.5px; font-weight:700; color:var(--text)}
-.list-btn {background:var(--primary-light); color:var(--primary); border:none; padding:8px 16px; border-radius:8px; font-size:13px; font-weight:700; cursor:pointer; transition:all 0.2s; white-space:nowrap}
-.list-btn:hover {background:var(--primary); color:white}
+/* LIST ROWS */
+.content-list-row{background:white;border-radius:12px;border:1px solid var(--border);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:16px;box-shadow:var(--shadow);transition:all 0.2s;position:relative}
+.content-list-row:hover{border-color:var(--primary);transform:translateX(4px);box-shadow:var(--shadow-hover)}
+.list-left{display:flex;align-items:center;gap:14px;flex:1}
+.list-icon{font-size:24px;width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.list-details{display:flex;flex-direction:column;gap:2px}
+.list-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.list-title{font-size:14.5px;font-weight:700;color:var(--text)}
+.list-actions{display:flex;gap:8px;align-items:center}
+.list-btn{background:var(--primary-light);color:var(--primary);border:none;padding:8px 16px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;transition:all 0.2s;white-space:nowrap;font-family:inherit}
+.list-btn:hover{background:var(--primary);color:white}
+.list-dl-btn{background:var(--bg);color:var(--text-secondary);border:1.5px solid var(--border);padding:8px 12px;border-radius:8px;font-size:13px;cursor:pointer;transition:all .2s;font-family:inherit;white-space:nowrap}
+.list-dl-btn:hover{background:#dcfce7;color:#16a34a;border-color:#16a34a}
+.list-share-btn{background:none;border:none;font-size:17px;cursor:pointer;color:var(--text-secondary);padding:6px}
+
+/* NEW BADGE on list */
+.list-new-badge{background:#ef4444;color:white;font-size:9.5px;font-weight:800;padding:2px 7px;border-radius:5px;letter-spacing:0.5px}
+
+/* LOADING */
+.skel{background:white;border-radius:16px;height:230px;border:1px solid var(--border);position:relative;overflow:hidden}
+.skel::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(0,0,0,0.04),transparent);animation:shimmer 1.4s infinite}
+@keyframes shimmer{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+
+/* RETRY */
+.retry-box{text-align:center;padding:50px 20px;background:white;border-radius:16px;border:1.5px dashed var(--border);grid-column:1/-1}
+.retry-btn{background:var(--primary);color:white;border:none;padding:11px 26px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:14px}
 
 .empty-state{text-align:center;padding:50px 20px;color:var(--text-secondary);font-size:14px;grid-column:1/-1;background:white;border-radius:16px;border:1.5px dashed var(--border)}
 
+/* SUBJECTS */
 .subject-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:48px}
 .subject-card{background:white;border-radius:14px;padding:20px;text-align:center;border:1.5px solid var(--border);cursor:pointer;transition:all 0.2s}
 .subject-card:hover{border-color:var(--primary);background:var(--primary-light);transform:translateY(-3px);box-shadow:var(--shadow-hover)}
@@ -161,19 +174,18 @@ nav{background:rgba(255,255,255,0.85);backdrop-filter:blur(10px);border-bottom:1
 .subject-name{font-size:14px;font-weight:700}
 .subject-count{font-size:11px;color:var(--text-secondary);margin-top:3px;font-weight:500}
 
+/* FOOTER */
 footer{background:#0f172a;color:#94a3b8;padding:0 20px 22px;margin-top:30px}
 .footer-inner{max-width:1140px;margin:0 auto}
-
 .footer-brand-strip{display:flex;align-items:center;gap:18px;padding:28px 0;border-bottom:1px solid #1e293b;margin-bottom:30px;flex-wrap:wrap}
 .footer-brand-logo{width:54px;height:54px;border-radius:14px;background:linear-gradient(135deg,#2563eb,#0ea5e9);display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0;overflow:hidden}
 .footer-logo-img{width:100%;height:100%;object-fit:cover}
 .footer-brand-text{flex:1;min-width:240px}
-.footer-brand-text h3{color:#f1f5f9;font-size:17px;font-weight:800;margin-bottom:5px;letter-spacing:-0.2px}
+.footer-brand-text h3{color:#f1f5f9;font-size:17px;font-weight:800;margin-bottom:5px}
 .footer-brand-text p{font-size:13px;line-height:1.7;color:#64748b;max-width:560px}
 .footer-brand-social{display:flex;gap:10px;flex-shrink:0}
 .footer-brand-social a{width:38px;height:38px;border-radius:10px;background:#1e293b;color:#cbd5e1;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:all .2s}
 .footer-brand-social a:hover{background:var(--primary);color:white;transform:translateY(-3px)}
-
 .footer-top{display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px;margin-bottom:28px}
 .footer-col h4{font-size:13.5px;font-weight:700;color:#e2e8f0;margin-bottom:14px}
 .footer-col a{display:block;font-size:13px;color:#94a3b8;text-decoration:none;margin-bottom:10px;transition:color 0.2s}
@@ -183,16 +195,18 @@ footer{background:#0f172a;color:#94a3b8;padding:0 20px 22px;margin-top:30px}
 .footer-bottom-links a{color:#64748b;text-decoration:none;font-size:13px;transition:color .2s}
 .footer-bottom-links a:hover{color:#60a5fa}
 
+/* VIDEO MODAL */
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(2,6,23,0.85);z-index:1000;align-items:center;justify-content:center;padding:20px}
 .modal-overlay.open{display:flex}
 .modal-box{background:#000;border-radius:16px;overflow:hidden;max-width:920px;width:100%;position:relative}
 .modal-close{position:absolute;top:12px;right:12px;background:rgba(255,255,255,0.95);border:none;width:36px;height:36px;border-radius:50%;font-size:18px;cursor:pointer;z-index:10}
 .modal-box iframe{width:100%;height:60vh;border:none;display:block}
 
-.skel{background:white;border-radius:16px;height:230px;border:1px solid var(--border);position:relative;overflow:hidden}
-.skel::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(0,0,0,0.04),transparent);animation:shimmer 1.4s infinite}
-@keyframes shimmer{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+/* TOAST */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:#1e293b;color:white;padding:12px 22px;border-radius:12px;font-size:14px;font-weight:600;z-index:2000;transition:transform .3s;pointer-events:none}
+.toast.show{transform:translateX(-50%) translateY(0)}
 
+/* RESPONSIVE */
 @media(max-width:768px){
   .hamburger{display:flex}
   .nav-links,.nav-social{display:none}
@@ -203,7 +217,7 @@ footer{background:#0f172a;color:#94a3b8;padding:0 20px 22px;margin-top:30px}
   .class-grid{grid-template-columns:repeat(4,1fr);gap:8px}
   .class-card{padding:13px 6px}
   .class-num{font-size:18px}
-  .folder-grid {grid-template-columns:repeat(2, 1fr); gap:12px}
+  .folder-grid{grid-template-columns:repeat(2,1fr);gap:12px}
   .content-grid{grid-template-columns:repeat(2,1fr)}
   .subject-grid{grid-template-columns:repeat(2,1fr)}
   .footer-top{grid-template-columns:1fr 1fr}
@@ -211,11 +225,11 @@ footer{background:#0f172a;color:#94a3b8;padding:0 20px 22px;margin-top:30px}
   .footer-brand-text{text-align:center}
   .footer-bottom{flex-direction:column;text-align:center}
   .modal-box iframe{height:40vh}
-  .content-list-row {flex-direction:column; align-items:flex-start; gap:10px}
-  .list-btn {width:100%; text-align:center}
+  .content-list-row{flex-wrap:wrap}
+  .list-actions{width:100%;justify-content:flex-end}
 }
 @media(max-width:480px){
-  .folder-grid {grid-template-columns:1fr; gap:10px}
+  .folder-grid{grid-template-columns:1fr;gap:10px}
   .content-grid{grid-template-columns:1fr}
   .class-grid{grid-template-columns:repeat(3,1fr)}
   .hero h1{font-size:22px}
@@ -224,18 +238,24 @@ footer{background:#0f172a;color:#94a3b8;padding:0 20px 22px;margin-top:30px}
 </head>
 <body>
 
+<div class="toast" id="toast"></div>
+
 <nav>
   <div class="nav-inner">
-    <a href="#" class="logo"><img src="IMG_20260630_012900_648.jpg" alt="logo" class="logo-img" onerror="this.outerHTML='📚'"> <span>Shin-Chan Learning Hub</span></a>
+    <a href="#" class="logo">
+      <img src="IMG_20260630_012900_648.jpg" alt="logo" class="logo-img" onerror="this.outerHTML='📚'">
+      <span>Shin-Chan Learning Hub</span>
+    </a>
     <div class="nav-links">
-      <a href="#" >হোম</a>
+      <a href="#">হোম</a>
       <a href="#classes">ক্লাস</a>
       <a href="#subjects">বিষয়</a>
-      <a href="#contents">সব কন্টেন্ট</a>
+      <a href="#contents">কন্টেন্ট</a>
     </div>
     <div class="nav-social">
       <a href="https://www.facebook.com/share/1EYV1iDTXg/" target="_blank" rel="noopener" title="Facebook">📘</a>
       <a href="https://t.me/shinchanlearningacademy" target="_blank" rel="noopener" title="Telegram">✈️</a>
+      <a href="https://www.youtube.com/@shinchanlearninghub" target="_blank" rel="noopener" title="YouTube">🎬</a>
     </div>
     <button class="hamburger" onclick="toggleMenu()" aria-label="মেনু">
       <span></span><span></span><span></span>
@@ -245,9 +265,10 @@ footer{background:#0f172a;color:#94a3b8;padding:0 20px 22px;margin-top:30px}
     <a href="#">🏠 হোম</a>
     <a href="#classes">📖 ক্লাস</a>
     <a href="#subjects">📚 বিষয়</a>
-    <a href="#contents">📝 সব কন্টেন্ট</a>
+    <a href="#contents">📝 কন্টেন্ট</a>
     <a href="https://www.facebook.com/share/1EYV1iDTXg/" target="_blank">📘 Facebook</a>
     <a href="https://t.me/shinchanlearningacademy" target="_blank">✈️ Telegram</a>
+    <a href="https://www.youtube.com/@shinchanlearninghub" target="_blank">🎬 YouTube</a>
   </div>
 </nav>
 
@@ -262,7 +283,8 @@ footer{background:#0f172a;color:#94a3b8;padding:0 20px 22px;margin-top:30px}
     </div>
     <div class="social-bar">
       <a class="social-pill" href="https://www.facebook.com/share/1EYV1iDTXg/" target="_blank" rel="noopener">📘 Facebook Page</a>
-      <a class="social-pill" href="https://t.me/shinchanlearningacademy" target="_blank" rel="noopener">✈️ Telegram চ্যানেল</a>
+      <a class="social-pill" href="https://t.me/shinchanlearningacademy" target="_blank" rel="noopener">✈️ Telegram</a>
+      <a class="social-pill" href="https://www.youtube.com/@shinchanlearninghub" target="_blank" rel="noopener">🎬 YouTube</a>
     </div>
   </div>
 </section>
@@ -277,21 +299,20 @@ footer{background:#0f172a;color:#94a3b8;padding:0 20px 22px;margin-top:30px}
 </div>
 
 <div class="container">
-
   <div class="notice-box">
     <div class="notice-icon">📢</div>
     <div>
       <div class="notice-title">গুরুত্বপূর্ণ বিজ্ঞপ্তি</div>
-      <div class="notice-text">পরীক্ষা কাছে আসছে! গণিত ও বিজ্ঞানের উপর বেশি মনোযোগ দাও। প্রতিদিন নতুন নোট ও ভিডিও যোগ হচ্ছে — আপডেট পেতে আমাদের Telegram চ্যানেলে জয়েন করো।</div>
+      <div class="notice-text">পরীক্ষা কাছে আসছে! প্রতিদিন নতুন নোট ও ভিডিও যোগ হচ্ছে — আপডেট পেতে আমাদের Telegram ও YouTube চ্যানেলে যোগ দাও।</div>
     </div>
   </div>
 
   <div class="search-box">
-    <input type="text" id="searchInput" placeholder="যা খুঁজছো লেখো — যেমন: ভগ্নাংশ, Tense, মুক্তিযুদ্ধ..." autocomplete="off">
-    <button onclick="document.getElementById('searchInput').focus()">🔍 খোঁজো</button>
-    <div class="search-suggest" id="searchSuggest"></div>
+    <input type="text" id="searchInput" placeholder="যা খুঁজছো লেখো — যেমন: Tense, ভগ্নাংশ, মুক্তিযুদ্ধ..." autocomplete="off" aria-label="কন্টেন্ট খোঁজো">
+    <button onclick="triggerSearch()" aria-label="খোঁজো">🔍 খোঁজো</button>
+    <div class="search-suggest" id="searchSuggest" role="listbox"></div>
   </div>
-  <div class="search-hint">💡 লেখা শুরু করলেই প্রাসঙ্গিক ক্লাস, বিষয় ও কন্টেন্ট সাজেস্ট হবে — বানান একটু ভুল হলেও সমস্যা নেই।</div>
+  <div class="search-hint">💡 লেখা শুরু করলেই সাজেশন আসবে — বানান একটু ভুল হলেও সমস্যা নেই।</div>
 
   <div id="classes">
     <div class="sec-header">
@@ -303,50 +324,31 @@ footer{background:#0f172a;color:#94a3b8;padding:0 20px 22px;margin-top:30px}
     <div class="class-grid" id="classGrid"></div>
   </div>
 
-  <!-- AUTO LIVE FOLDERS -->
   <div class="folder-grid">
     <div class="folder-card active" id="f-all" onclick="selectFolder('all')">
       <div class="folder-icon-wrapper folder-f-note">📂</div>
-      <div class="folder-info">
-        <span class="folder-name">সব কন্টেন্ট</span>
-        <span class="folder-count" id="count-all">০ টি কন্টেন্ট</span>
-      </div>
+      <div class="folder-info"><span class="folder-name">সব কন্টেন্ট</span><span class="folder-count" id="count-all">০ টি</span></div>
     </div>
     <div class="folder-card" id="f-video" onclick="selectFolder('video')">
       <div class="folder-icon-wrapper folder-f-video">🎥</div>
-      <div class="folder-info">
-        <span class="folder-name">ভিডিও ক্লাস</span>
-        <span class="folder-count" id="count-video">০ টি ভিডিও</span>
-      </div>
+      <div class="folder-info"><span class="folder-name">ভিডিও ক্লাস</span><span class="folder-count" id="count-video">০ টি</span></div>
     </div>
     <div class="folder-card" id="f-note" onclick="selectFolder('note')">
       <div class="folder-icon-wrapper folder-f-note">📝</div>
-      <div class="folder-info">
-        <span class="folder-name">ক্লাস নোটস</span>
-        <span class="folder-count" id="count-note">০ টি ফাইল</span>
-      </div>
+      <div class="folder-info"><span class="folder-name">ক্লাস নোটস</span><span class="folder-count" id="count-note">০ টি</span></div>
     </div>
     <div class="folder-card" id="f-pdf" onclick="selectFolder('pdf')">
       <div class="folder-icon-wrapper folder-f-pdf">📄</div>
-      <div class="folder-info">
-        <span class="folder-name">PDF গাইড বুক</span>
-        <span class="folder-count" id="count-pdf">০ টি গাইড</span>
-      </div>
+      <div class="folder-info"><span class="folder-name">PDF গাইড</span><span class="folder-count" id="count-pdf">০ টি</span></div>
     </div>
   </div>
 
   <div id="contents">
     <div class="sec-header">
       <div>
-        <div class="sec-eyebrow">লাইভ কন্টেন্ট ফাইলস</div>
+        <div class="sec-eyebrow">লাইভ কন্টেন্ট</div>
         <h2 class="sec-title" id="contentSecTitle">🔥 <span>সব</span> কন্টেন্ট</h2>
       </div>
-    </div>
-    <div class="filters">
-      <button class="filter-btn active" data-type="all" onclick="setFilter(this,'all')">সব</button>
-      <button class="filter-btn" data-type="video" onclick="setFilter(this,'video')">🎥 ভিডিও</button>
-      <button class="filter-btn" data-type="note" onclick="setFilter(this,'note')">📝 নোট</button>
-      <button class="filter-btn" data-type="pdf" onclick="setFilter(this,'pdf')">📄 PDF</button>
     </div>
     <div class="content-grid" id="contentGrid">
       <div class="skel"></div><div class="skel"></div><div class="skel"></div>
@@ -362,12 +364,11 @@ footer{background:#0f172a;color:#94a3b8;padding:0 20px 22px;margin-top:30px}
     </div>
     <div class="subject-grid" id="subjectGrid"></div>
   </div>
-
 </div>
 
 <div class="modal-overlay" id="videoModal" onclick="if(event.target===this)closeModal()">
   <div class="modal-box">
-    <button class="modal-close" onclick="closeModal()">✕</button>
+    <button class="modal-close" onclick="closeModal()" aria-label="বন্ধ করো">✕</button>
     <iframe id="videoFrame" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
   </div>
 </div>
@@ -378,21 +379,23 @@ footer{background:#0f172a;color:#94a3b8;padding:0 20px 22px;margin-top:30px}
       <div class="footer-brand-logo"><img src="IMG_20260630_012900_648.jpg" alt="logo" class="footer-logo-img" onerror="this.outerHTML='📚'"></div>
       <div class="footer-brand-text">
         <h3>Shin-Chan Learning Hub</h3>
-        <p>Class 1-10 এর শিক্ষার্থীদের জন্য ফ্রি ভিডিও ক্লাস, নোট ও PDF। সহজ, নির্ভরযোগ্য, এবং সবার জন্য উন্মুক্ত একটি শিক্ষা প্ল্যাটফর্ম।</p>
+        <p>Class 1-10 এর শিক্ষার্থীদের জন্য ফ্রি ভিডিও ক্লাস, নোট ও PDF। সহজ, নির্ভরযোগ্য, এবং সবার জন্য উন্মুক্ত।</p>
       </div>
       <div class="footer-brand-social">
-        <a href="https://www.facebook.com/share/1EYV1iDTXg/" target="_blank" rel="noopener" title="Facebook Page" aria-label="Facebook">
+        <a href="https://www.facebook.com/share/1EYV1iDTXg/" target="_blank" rel="noopener" aria-label="Facebook">
           <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.16 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.51 1.49-3.9 3.77-3.9 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.45 2.91h-2.33V22c4.78-.78 8.44-4.94 8.44-9.94z"/></svg>
         </a>
-        <a href="https://t.me/shinchanlearningacademy" target="_blank" rel="noopener" title="Telegram চ্যানেল" aria-label="Telegram">
+        <a href="https://t.me/shinchanlearningacademy" target="_blank" rel="noopener" aria-label="Telegram">
           <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M21.9 4.5l-3.1 15c-.2 1-.9 1.2-1.7.8l-4.8-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.4-5 9-8.2c.4-.4-.1-.6-.6-.2L7 13.2l-4.8-1.5c-1-.3-1-1 .2-1.5L20.5 3.5c.8-.3 1.6.2 1.4 1z"/></svg>
         </a>
-        <a href="mailto:ahsan03092025@gmail.com" title="Email" aria-label="Email">
+        <a href="https://www.youtube.com/@shinchanlearninghub" target="_blank" rel="noopener" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M23 7s-.3-2-1.2-2.8c-1.1-1.2-2.4-1.2-3-1.3C16.2 2.8 12 2.8 12 2.8s-4.2 0-6.8.1c-.6.1-1.9.1-3 1.3C1.3 5 1 7 1 7S.7 9.2.7 11.5v2.1c0 2.3.3 4.5.3 4.5s.3 2 1.2 2.8c1.1 1.2 2.6 1.1 3.3 1.2C7.5 22.2 12 22.2 12 22.2s4.2 0 6.8-.2c.6-.1 1.9-.1 3-1.2.9-.8 1.2-2.8 1.2-2.8s.3-2.2.3-4.5v-2.1C23.3 9.2 23 7 23 7zM9.7 15.5V8.4l8.1 3.6-8.1 3.5z"/></svg>
+        </a>
+        <a href="mailto:ahsan03092025@gmail.com" aria-label="Email">
           <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M2 4h20v16H2V4zm2 2v.01L12 12l8-5.99V6H4zm16 2.24l-7.42 5.56a1 1 0 01-1.16 0L4 8.24V18h16V8.24z"/></svg>
         </a>
       </div>
     </div>
-
     <div class="footer-top">
       <div class="footer-col">
         <h4>ক্লাস</h4>
@@ -406,141 +409,155 @@ footer{background:#0f172a;color:#94a3b8;padding:0 20px 22px;margin-top:30px}
         <a href="#contents">নোট ও PDF</a>
         <a href="#subjects">বিষয় সমূহ</a>
       </div>
-      <div class="footer-col" id="contact-us">
-        <h4>যোগাযোগ করুন</h4>
-        <a href="https://www.facebook.com/share/1EYV1iDTXg/" target="_blank" rel="noopener">📘 Facebook Page</a>
-        <a href="https://t.me/shinchanlearningacademy" target="_blank" rel="noopener">✈️ Telegram চ্যানেল</a>
+      <div class="footer-col">
+        <h4>যোগাযোগ</h4>
+        <a href="https://www.facebook.com/share/1EYV1iDTXg/" target="_blank">📘 Facebook Page</a>
+        <a href="https://t.me/shinchanlearningacademy" target="_blank">✈️ Telegram</a>
+        <a href="https://www.youtube.com/@shinchanlearninghub" target="_blank">🎬 YouTube</a>
         <a href="mailto:ahsan03092025@gmail.com">✉️ ahsan03092025@gmail.com</a>
       </div>
     </div>
     <div class="footer-bottom">
       <span>© ২০২৬ Shin-Chan Learning Hub | সর্বস্বত্ব সংরক্ষিত</span>
       <span class="footer-bottom-links">
-        <a href="https://www.facebook.com/share/1EYV1iDTXg/" target="_blank" rel="noopener">Facebook</a>
-        <a href="https://t.me/shinchanlearningacademy" target="_blank" rel="noopener">Telegram</a>
-        <a href="mailto:ahsan03092025@gmail.com">Email</a>
+        <a href="https://www.facebook.com/share/1EYV1iDTXg/" target="_blank">Facebook</a>
+        <a href="https://t.me/shinchanlearningacademy" target="_blank">Telegram</a>
+        <a href="https://www.youtube.com/@shinchanlearninghub" target="_blank">YouTube</a>
       </span>
     </div>
   </div>
 </footer>
 
 <script>
+/* =============================================================
+   CONFIG — Google Sheet ID শুধু এখানে একবার বদলালেই হবে
+   Sheet columns: Title | Subject | Class | Type | Link | Date
+   Date কলাম optional — থাকলে "NEW" badge দেখাবে (৭ দিনের মধ্যে)
+   ============================================================= */
 const SHEET_ID = '18zWcpnwm7RRteESnYOXy9mAzLZF_PM3tLIgRF-oWeT4';
 const GVIZ_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json`;
 
 const subjectIcons = {"গণিত":"🔢","বাংলা":"📖","English":"🌍","বিজ্ঞান":"🔬","পদার্থ":"⚡","রসায়ন":"🧪","জীববিজ্ঞান":"🌱","ভূগোল":"🗺️","ইতিহাস":"🏛️"};
 const thumbClasses = ["thumb-blue","thumb-green","thumb-amber","thumb-purple"];
-const badgeMap = {video:{cls:"badge-video",label:"ভিডিও",icon:"🎥"}, note:{cls:"badge-note",label:"নোট",icon:"📝"}, pdf:{cls:"badge-pdf",label:"PDF",icon:"📄"}};
+const badgeMap = {
+  video:{cls:"badge-video",label:"ভিডিও",icon:"🎥"},
+  note:{cls:"badge-note",label:"নোট",icon:"📝"},
+  pdf:{cls:"badge-pdf",label:"PDF",icon:"📄"}
+};
 
 let allContent = [];
 let activeFilter = "all";
 let activeClass = null;
 
+/* ---- Utilities ---- */
 function toggleMenu(){ document.getElementById('mobileMenu').classList.toggle('open'); }
 
-function extractDriveId(value){
-  if(!value) return '';
-  const match = value.match(/\/d\/([a-zA-Z0-9_-]{10,})/);
-  if(match) return match[1];
-  return value.trim();
-}
-function extractYoutubeId(value){
-  if(!value) return '';
-  let m = value.match(/(?:youtu\.be\/|v=|embed\/)([a-zA-Z0-9_-]{6,})/);
-  if(m) return m[1];
-  return value.trim();
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 2500);
 }
 
+function extractDriveId(v){
+  if(!v) return '';
+  const m = v.match(/\/d\/([a-zA-Z0-9_-]{10,})/);
+  return m ? m[1] : v.trim();
+}
+function extractYoutubeId(v){
+  if(!v) return '';
+  const m = v.match(/(?:youtu\.be\/|v=|embed\/)([a-zA-Z0-9_-]{6,})/);
+  return m ? m[1] : v.trim();
+}
+function isNew(dateStr){
+  if(!dateStr) return false;
+  try{
+    const d = new Date(dateStr);
+    return (Date.now() - d.getTime()) < 7*24*60*60*1000;
+  }catch(e){ return false; }
+}
+
+/* ---- Data loading ---- */
 async function loadSheetData(){
+  document.getElementById('contentGrid').innerHTML =
+    '<div class="skel"></div><div class="skel"></div><div class="skel"></div>';
   try{
     const res = await fetch(GVIZ_URL);
-    if(!res.ok) throw new Error('fetch failed: ' + res.status);
+    if(!res.ok) throw new Error('HTTP ' + res.status);
     const text = await res.text();
-    const jsonStr = text.substring(text.indexOf('{'), text.lastIndexOf('}') + 1);
-    const data = JSON.parse(jsonStr);
-    const rows = data.table.rows || [];
+    const json = JSON.parse(text.substring(text.indexOf('{'), text.lastIndexOf('}')+1));
+    const rows = json.table.rows || [];
 
-    allContent = rows.map(row => {
-      const cells = row.c || [];
-      const get = (i) => (cells[i] && cells[i].v !== null && cells[i].v !== undefined) ? String(cells[i].v).trim() : '';
-      const title = get(0);
-      if(!title) return null;
-      const type = get(3).toLowerCase();
-      const rawLink = get(4);
+    allContent = rows.map(row=>{
+      const c = row.c || [];
+      const g = (i)=>(c[i]&&c[i].v!=null)?String(c[i].v).trim():'';
+      const title = g(0); if(!title) return null;
+      const type = g(3).toLowerCase();
       return {
-        title: title,
-        subject: get(1),
-        class: parseInt(get(2) || '0', 10),
-        type: type,
-        youtubeId: type === 'video' ? extractYoutubeId(rawLink) : '',
-        driveId: type !== 'video' ? extractDriveId(rawLink) : ''
+        title, subject:g(1), class:parseInt(g(2)||'0',10),
+        type, dateStr:g(5),
+        youtubeId: type==='video'?extractYoutubeId(g(4)):'',
+        driveId:   type!=='video'?extractDriveId(g(4)):''
       };
     }).filter(Boolean);
 
-    updateFolderCounters();
-    renderAll();
+    updateCounters(); renderAll();
   }catch(err){
-    document.getElementById('contentGrid').innerHTML =
-      `<div class="empty-state">⚠️ কন্টেন্ট লোড করতে সমস্যা হয়েছে।<br><span style="font-size:11px;color:#94a3b8">(${err.message})</span></div>`;
+    document.getElementById('contentGrid').innerHTML = `
+      <div class="retry-box">
+        <p>⚠️ কন্টেন্ট লোড করতে সমস্যা হয়েছে।</p>
+        <p style="font-size:12px;color:#94a3b8;margin-top:6px">${err.message}</p>
+        <button class="retry-btn" onclick="loadSheetData()">🔄 আবার চেষ্টা করো</button>
+      </div>`;
   }
 }
 
-function updateFolderCounters() {
+function updateCounters(){
   const total = allContent.length;
-  const videos = allContent.filter(c => c.type === 'video').length;
-  const notes = allContent.filter(c => c.type === 'note').length;
-  const pdfs = allContent.filter(c => c.type === 'pdf').length;
-
-  document.getElementById('count-all').textContent = `${total} টি কন্টেন্ট`;
-  document.getElementById('count-video').textContent = `${videos} টি ভিডিও`;
-  document.getElementById('count-note').textContent = `${notes} টি ফাইল`;
-  document.getElementById('count-pdf').textContent = `${pdfs} টি গাইড`;
+  document.getElementById('count-all').textContent   = `${total} টি`;
+  document.getElementById('count-video').textContent = `${allContent.filter(c=>c.type==='video').length} টি`;
+  document.getElementById('count-note').textContent  = `${allContent.filter(c=>c.type==='note').length} টি`;
+  document.getElementById('count-pdf').textContent   = `${allContent.filter(c=>c.type==='pdf').length} টি`;
   document.getElementById('contentCount').textContent = total;
 }
 
-function selectFolder(type) {
+/* ---- Folder / Filter ---- */
+function selectFolder(type){
   activeFilter = type;
-  document.querySelectorAll('.folder-card').forEach(card => card.classList.remove('active'));
-  document.getElementById(`f-${type}`).classList.add('active');
-  
-  const titleMap = {all: 'সব', video: '🎥 ভিডিও', note: '📝 নোট', pdf: '📄 PDF'};
-  document.getElementById('contentSecTitle').innerHTML = `🔥 <span>${titleMap[type]}</span> কন্টেন্ট`;
-  
+  document.querySelectorAll('.folder-card').forEach(el=>el.classList.remove('active'));
+  document.getElementById('f-'+type).classList.add('active');
+  const t = {all:'সব',video:'🎥 ভিডিও',note:'📝 নোট',pdf:'📄 PDF'};
+  document.getElementById('contentSecTitle').innerHTML = `🔥 <span>${t[type]}</span> কন্টেন্ট`;
   renderContent();
   document.getElementById('contents').scrollIntoView({behavior:'smooth'});
-}
-
-function setFilter(btn, type){
-  activeFilter = type;
-  renderContent();
 }
 
 function setClassFilter(c){
-  activeClass = (activeClass === c) ? null : c;
-  renderClasses();
-  renderContent();
+  activeClass = (activeClass===c)?null:c;
+  renderClasses(); renderContent();
   document.getElementById('contents').scrollIntoView({behavior:'smooth'});
 }
 
+/* ---- Render: classes ---- */
 function renderClasses(){
   const grid = document.getElementById('classGrid');
   grid.innerHTML = "";
-  // এখানে টাইপোটি ঠিক করা হয়েছে ("৭ ashes" থেকে বদলে "৭" করা হয়েছে)
   const bn = ["০","১","২","৩","৪","৫","৬","৭","৮","৯","১০"];
-  const allBtn = document.createElement('div');
-  allBtn.className = "class-card" + (activeClass===null ? " active" : "");
-  allBtn.onclick = ()=>{ activeClass=null; renderClasses(); renderContent(); };
-  allBtn.innerHTML = `<div class="class-num">সব</div>`;
-  grid.appendChild(allBtn);
+  const all = document.createElement('div');
+  all.className = "class-card"+(activeClass===null?" active":"");
+  all.onclick = ()=>{ activeClass=null; renderClasses(); renderContent(); };
+  all.innerHTML = `<div class="class-num">সব</div>`;
+  grid.appendChild(all);
   for(let i=1;i<=10;i++){
-    const div = document.createElement('div');
-    div.className = "class-card" + (activeClass===i ? " active" : "");
-    div.onclick = ()=>setClassFilter(i);
-    div.innerHTML = `<div class="class-num">${bn[i]}</div><div class="class-lbl">Class</div>`;
-    grid.appendChild(div);
+    const d = document.createElement('div');
+    d.className = "class-card"+(activeClass===i?" active":"");
+    d.onclick = ()=>setClassFilter(i);
+    d.innerHTML = `<div class="class-num">${bn[i]}</div><div class="class-lbl">Class</div>`;
+    grid.appendChild(d);
   }
 }
 
+/* ---- Render: subjects ---- */
 function renderSubjects(){
   const grid = document.getElementById('subjectGrid');
   grid.innerHTML = "";
@@ -550,14 +567,20 @@ function renderSubjects(){
     const count = allContent.filter(c=>c.subject===s).length;
     const card = document.createElement('div');
     card.className = "subject-card";
-    card.onclick = ()=>{ document.getElementById('searchInput').value = s; document.getElementById('searchSuggest').classList.remove('open'); renderContent(); document.getElementById('contents').scrollIntoView({behavior:'smooth'}); };
-    card.innerHTML = `<div class="subject-icon">${subjectIcons[s] || "📘"}</div><div class="subject-name">${s}</div><div class="subject-count">${count} টি কন্টেন্ট</div>`;
+    card.onclick = ()=>{
+      document.getElementById('searchInput').value = s;
+      document.getElementById('searchSuggest').classList.remove('open');
+      renderContent();
+      document.getElementById('contents').scrollIntoView({behavior:'smooth'});
+    };
+    card.innerHTML = `<div class="subject-icon">${subjectIcons[s]||"📘"}</div><div class="subject-name">${s}</div><div class="subject-count">${count} টি কন্টেন্ট</div>`;
     grid.appendChild(card);
   });
 }
 
+/* ---- Video modal ---- */
 function openVideo(id){
-  if(!id){ alert("এই ভিডিওর লিংক এখনো ঠিকভাবে যোগ করা হয়নি।"); return; }
+  if(!id){ showToast("ভিডিও লিংক এখনো যোগ করা হয়নি"); return; }
   document.getElementById('videoFrame').src = `https://www.youtube.com/embed/${id}?autoplay=1`;
   document.getElementById('videoModal').classList.add('open');
 }
@@ -566,125 +589,94 @@ function closeModal(){
   document.getElementById('videoFrame').src = "";
 }
 
-function normalize(str){
-  return (str || '').toLowerCase().trim();
-}
-
-function similarity(a, b){
-  a = normalize(a); b = normalize(b);
-  if(!a || !b) return 0;
-  if(a === b) return 1;
-  if(b.includes(a) || a.includes(b)) return 0.85;
-  let matches = 0;
-  const shorter = a.length < b.length ? a : b;
-  const longer = a.length < b.length ? b : a;
-  for(let i=0;i<shorter.length;i++){
-    if(longer.includes(shorter[i])) matches++;
+/* ---- Share ---- */
+function shareItem(title, url){
+  if(navigator.share){
+    navigator.share({title, url}).catch(()=>{});
+  } else {
+    navigator.clipboard.writeText(url).then(()=>showToast("লিংক কপি হয়েছে ✓")).catch(()=>showToast("লিংক: "+url));
   }
-  return matches / longer.length;
 }
 
-function scoreItem(item, query){
-  const q = normalize(query);
-  if(!q) return 1;
-  const title = normalize(item.title);
-  const subject = normalize(item.subject);
-  let score = 0;
-  if(title.includes(q)) score = Math.max(score, 1);
-  if(subject.includes(q)) score = Math.max(score, 0.9);
-  const queryTokens = q.split(/\s+/).filter(Boolean);
-  const titleTokens = title.split(/\s+/).filter(Boolean);
-  queryTokens.forEach(qt=>{
-    titleTokens.forEach(tt=>{
-      score = Math.max(score, similarity(qt, tt) * 0.8);
-    });
-  });
-  return score;
+/* ---- Smart Search ---- */
+function normalize(s){ return (s||'').toLowerCase().trim(); }
+function similarity(a,b){
+  a=normalize(a); b=normalize(b);
+  if(!a||!b) return 0;
+  if(a===b) return 1;
+  if(b.includes(a)||a.includes(b)) return 0.85;
+  let m=0; const sh=a.length<b.length?a:b, lo=a.length<b.length?b:a;
+  for(let i=0;i<sh.length;i++) if(lo.includes(sh[i])) m++;
+  return m/lo.length;
 }
-
-function getSuggestions(query){
-  const q = normalize(query);
-  if(!q || q.length < 1) return [];
-  const results = [];
-
-  allContent.forEach(c=>{
-    const s = scoreItem(c, q);
-    if(s >= 0.45) results.push({type:'content', score:s, item:c});
-  });
-
-  const subjects = [...new Set(allContent.map(c=>c.subject).filter(Boolean))];
-  subjects.forEach(s=>{
-    const sim = similarity(q, s);
-    if(sim >= 0.4) results.push({type:'subject', score:sim + 0.05, item:{subject:s}});
-  });
-
-  results.sort((a,b)=>b.score - a.score);
-  return results.slice(0, 6);
+function scoreItem(item,q){
+  q=normalize(q); if(!q) return 1;
+  const t=normalize(item.title), s=normalize(item.subject);
+  let sc=0;
+  if(t.includes(q)) sc=Math.max(sc,1);
+  if(s.includes(q)) sc=Math.max(sc,0.9);
+  q.split(/\s+/).filter(Boolean).forEach(qt=>
+    t.split(/\s+/).filter(Boolean).forEach(tt=>
+      sc=Math.max(sc,similarity(qt,tt)*0.8)));
+  return sc;
 }
 
 function renderSuggestions(){
   const box = document.getElementById('searchSuggest');
-  const query = document.getElementById('searchInput').value;
-  if(!query.trim()){ box.classList.remove('open'); box.innerHTML=''; return; }
-
-  const suggestions = getSuggestions(query);
-  if(suggestions.length === 0){
-    box.innerHTML = `<div class="search-suggest-item" style="cursor:default">😕 কাছাকাছি কিছু পাওয়া যায়নি — সব কন্টেন্টের মধ্যে দেখানো হচ্ছে</div>`;
-    box.classList.add('open');
-    return;
+  const q = document.getElementById('searchInput').value;
+  if(!q.trim()){ box.classList.remove('open'); box.innerHTML=''; return; }
+  const res = [];
+  allContent.forEach(c=>{ const s=scoreItem(c,q); if(s>=0.45) res.push({type:'content',score:s,item:c}); });
+  [...new Set(allContent.map(c=>c.subject).filter(Boolean))].forEach(s=>{
+    const sim=similarity(q,s); if(sim>=0.4) res.push({type:'subject',score:sim+0.05,item:{subject:s}});
+  });
+  res.sort((a,b)=>b.score-a.score);
+  const top = res.slice(0,6);
+  if(!top.length){
+    box.innerHTML=`<div class="search-suggest-item" style="cursor:default">😕 কাছাকাছি কিছু পাওয়া যায়নি</div>`;
+  } else {
+    box.innerHTML = top.map(s=>{
+      if(s.type==='content'){
+        const badge=badgeMap[s.item.type]||badgeMap.note;
+        return `<div class="search-suggest-item" data-q="${s.item.title.replace(/"/g,'&quot;')}">
+          <span>${badge.icon}</span><span style="flex:1">${s.item.title}</span>
+          <span class="search-suggest-tag">Class ${s.item.class}</span></div>`;
+      } else {
+        return `<div class="search-suggest-item" data-q="${s.item.subject}">
+          <span>📖</span><span style="flex:1"><b>${s.item.subject}</b> বিষয়ের সব কন্টেন্ট</span></div>`;
+      }
+    }).join('');
   }
-
-  box.innerHTML = suggestions.map(s=>{
-    if(s.type === 'content'){
-      const badge = badgeMap[s.item.type] || badgeMap.note;
-      return `<div class="search-suggest-item" data-q="${s.item.title.replace(/"/g,'&quot;')}">
-        <span class="search-suggest-icon">${badge.icon}</span>
-        <span class="search-suggest-text">${s.item.title}</span>
-        <span class="search-suggest-tag">Class ${s.item.class}</span>
-      </div>`;
-    } else {
-      return `<div class="search-suggest-item" data-q="${s.item.subject}">
-        <span class="search-suggest-icon">📖</span>
-        <span class="search-suggest-text">"<b>${s.item.subject}</b>" বিষয়ের সব কন্টেন্ট দেখো</span>
-      </div>`;
-    }
-  }).join('');
   box.classList.add('open');
-
-  box.querySelectorAll('.search-suggest-item[data-q]').forEach(el=>{
-    el.onclick = ()=>{
-      document.getElementById('searchInput').value = el.getAttribute('data-q');
-      box.classList.remove('open');
-      renderContent();
-    };
+  box.querySelectorAll('[data-q]').forEach(el=>el.onclick=()=>{
+    document.getElementById('searchInput').value=el.getAttribute('data-q');
+    box.classList.remove('open'); renderContent();
+    document.getElementById('contents').scrollIntoView({behavior:'smooth'});
   });
 }
 
+function triggerSearch(){
+  renderContent();
+  document.getElementById('contents').scrollIntoView({behavior:'smooth'});
+}
+
+/* ---- Render: content ---- */
 function renderContent(){
   const grid = document.getElementById('contentGrid');
-  const query = document.getElementById('searchInput').value.trim();
-  let items;
-
-  if(!query){
-    items = allContent.slice();
-  } else {
-    items = allContent
-      .map(c=>({item:c, score:scoreItem(c, query)}))
-      .filter(r=>r.score >= 0.4)
-      .sort((a,b)=>b.score - a.score)
-      .map(r=>r.item);
-  }
+  const q = document.getElementById('searchInput').value.trim();
+  let items = q
+    ? allContent.map(c=>({item:c,score:scoreItem(c,q)})).filter(r=>r.score>=0.4).sort((a,b)=>b.score-a.score).map(r=>r.item)
+    : allContent.slice();
 
   items = items.filter(c=>{
-    const matchType = activeFilter==='all' || c.type===activeFilter;
-    const matchClass = activeClass===null || c.class===activeClass;
-    return matchType && matchClass;
+    const mt = activeFilter==='all'||c.type===activeFilter;
+    const mc = activeClass===null||c.class===activeClass;
+    return mt&&mc;
   });
 
   grid.innerHTML = "";
-  
-  if(items.length===0){
-    grid.innerHTML = `<div class="empty-state">😕 এই ফোল্ডারে বা ফিল্টারে কোনো কন্টেন্ট খুঁজে পাওয়া যায়নি।</div>`;
+  if(!items.length){
+    grid.innerHTML = `<div class="empty-state">😕 কোনো কন্টেন্ট পাওয়া যায়নি।<br>নতুন content শীঘ্রই যোগ হবে।</div>`;
     return;
   }
 
@@ -693,66 +685,82 @@ function renderContent(){
   let hasListItems = false;
 
   items.forEach((c,i)=>{
-    const badge = badgeMap[c.type] || badgeMap.note;
-    const isVideo = c.type === 'video';
+    const badge = badgeMap[c.type]||badgeMap.note;
+    const isVideo = c.type==='video';
+    const newBadge = isNew(c.dateStr);
+    const shareUrl = c.type==='video'
+      ? `https://youtu.be/${c.youtubeId}`
+      : `https://drive.google.com/file/d/${c.driveId}/view`;
 
-    if (isVideo) {
-      const thumb = thumbClasses[i % thumbClasses.length];
+    if(isVideo){
       const card = document.createElement('div');
       card.className = "content-card";
       card.innerHTML = `
-        <div class="content-thumb ${thumb}"><span>${badge.icon}</span><span class="content-badge ${badge.cls}">${badge.label}</span></div>
+        <div class="content-thumb ${thumbClasses[i%thumbClasses.length]}">
+          <span>${badge.icon}</span>
+          <span class="content-badge ${badge.cls}">${badge.label}</span>
+          ${newBadge?'<span class="new-badge">NEW</span>':''}
+        </div>
         <div class="content-body">
-          <div class="content-subject">${c.subject || 'সাধারণ'}</div>
+          <div class="content-subject">${c.subject||'সাধারণ'}</div>
           <div class="content-title">${c.title}</div>
-          <div class="content-class-tag">Class ${c.class || '—'}</div>
-          <button class="content-btn">📺 ভিডিওটি দেখো</button>
+          <div class="content-class-tag">Class ${c.class||'—'}</div>
+          <div class="content-btn-row">
+            <button class="content-btn" aria-label="ভিডিও দেখো">📺 ভিডিও দেখো</button>
+            <button class="share-btn" title="শেয়ার করো" aria-label="শেয়ার করো">🔗</button>
+          </div>
         </div>`;
-      card.querySelector('.content-btn').onclick = () => openVideo(c.youtubeId);
+      card.querySelector('.content-btn').onclick = ()=>openVideo(c.youtubeId);
+      card.querySelector('.share-btn').onclick = ()=>shareItem(c.title, shareUrl);
       grid.appendChild(card);
     } else {
       hasListItems = true;
-      const listRow = document.createElement('div');
-      listRow.className = "content-list-row";
-      listRow.innerHTML = `
+      const row = document.createElement('div');
+      row.className = "content-list-row";
+      row.innerHTML = `
+        ${newBadge?'<span class="list-new-badge" style="position:absolute;top:10px;right:10px">NEW</span>':''}
         <div class="list-left">
           <div class="list-icon" style="background:${badge.cls==='badge-pdf'?'#fef3c7':'#dcfce7'}">${badge.icon}</div>
           <div class="list-details">
             <div class="list-title">${c.title}</div>
             <div class="list-meta">
-              <span class="content-subject">${c.subject || 'সাধারণ'}</span>
-              <span class="content-class-tag">Class ${c.class || '—'}</span>
+              <span class="content-subject">${c.subject||'সাধারণ'}</span>
+              <span class="content-class-tag">Class ${c.class||'—'}</span>
             </div>
           </div>
         </div>
-        <button class="list-btn">${c.type === 'pdf' ? '📄 PDF ওপেন করো' : '📝 নোটটি দেখো'}</button>
-      `;
-      listRow.querySelector('.list-btn').onclick = () => {
-        if(!c.driveId){ alert("এই ফাইলটি এখনো ঠিকভাবে যোগ করা হয়নি।"); return; }
-        window.open(`https://drive.google.com/file/d/${c.driveId}/preview`, '_blank');
+        <div class="list-actions">
+          <button class="list-btn" aria-label="ফাইল দেখো">${c.type==='pdf'?'📄 দেখো':'📝 দেখো'}</button>
+          <button class="list-dl-btn" aria-label="ডাউনলোড করো">⬇ ডাউনলোড</button>
+          <button class="list-share-btn" title="শেয়ার করো" aria-label="শেয়ার করো">🔗</button>
+        </div>`;
+      row.querySelector('.list-btn').onclick = ()=>{
+        if(!c.driveId){ showToast("ফাইল লিংক এখনো যোগ হয়নি"); return; }
+        window.open(`https://drive.google.com/file/d/${c.driveId}/preview`,'_blank');
       };
-      listContainer.appendChild(listRow);
+      row.querySelector('.list-dl-btn').onclick = ()=>{
+        if(!c.driveId){ showToast("ফাইল লিংক এখনো যোগ হয়নি"); return; }
+        window.open(`https://drive.google.com/uc?export=download&id=${c.driveId}`,'_blank');
+      };
+      row.querySelector('.list-share-btn').onclick = ()=>shareItem(c.title, shareUrl);
+      listContainer.appendChild(row);
     }
   });
 
-  if (hasListItems) {
-    grid.appendChild(listContainer);
-  }
+  if(hasListItems) grid.appendChild(listContainer);
 }
 
-function renderAll(){
-  renderClasses();
-  renderSubjects();
-  renderContent();
-}
+function renderAll(){ renderClasses(); renderSubjects(); renderContent(); }
 
-document.getElementById('searchInput').addEventListener('input', ()=>{ renderSuggestions(); renderContent(); });
+/* ---- Events ---- */
+document.getElementById('searchInput').addEventListener('input',()=>{ renderSuggestions(); renderContent(); });
 document.getElementById('searchInput').addEventListener('focus', renderSuggestions);
-document.addEventListener('click', (e)=>{
-  const box = document.getElementById('searchSuggest');
-  const input = document.getElementById('searchInput');
-  if(!box.contains(e.target) && e.target !== input) box.classList.remove('open');
+document.getElementById('searchInput').addEventListener('keydown',e=>{ if(e.key==='Enter'){ document.getElementById('searchSuggest').classList.remove('open'); triggerSearch(); }});
+document.addEventListener('click',e=>{
+  const box=document.getElementById('searchSuggest'), inp=document.getElementById('searchInput');
+  if(!box.contains(e.target)&&e.target!==inp) box.classList.remove('open');
 });
+
 loadSheetData();
 </script>
 </body>
